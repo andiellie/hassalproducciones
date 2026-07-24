@@ -8,7 +8,7 @@ Add a section to the Cosmos Agency home page that displays 17 brand/service keyw
 
 `src/components/home/GalaxySection.tsx` — new client component (`'use client'`), following the pattern of `StarfieldBackground.tsx` for mouse-parallax behavior.
 
-Rendered in `src/app/page.tsx` between `Hero` and `AboutSection`.
+Rendered in `src/app/page.tsx` right after `BrandCarousel`, before `AboutSection`.
 
 ## Content
 
