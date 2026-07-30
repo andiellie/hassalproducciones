@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-4 z-50 flex justify-center px-4">
-      <nav className="flex w-full max-w-3xl items-center justify-between gap-6 rounded-full border border-white/10 bg-slate-900/55 px-5 py-2.5 backdrop-blur-md">
+      <nav className="flex w-full max-w-[90rem] items-center justify-between gap-6 rounded-full border border-white/10 bg-slate-900/55 px-5 py-2.5 backdrop-blur-md">
         <Link href="/" className="flex items-center gap-2 text-sm font-bold text-white">
           <span
             className="text-base leading-none text-[#d4ff00]"
@@ -61,7 +61,7 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="absolute top-16 w-[calc(100%-2rem)] max-w-3xl rounded-2xl border border-white/10 bg-slate-900/90 p-4 backdrop-blur-md sm:hidden">
+        <div className="absolute top-16 w-[calc(100%-2rem)] max-w-[90rem] rounded-2xl border border-white/10 bg-slate-900/90 p-4 backdrop-blur-md sm:hidden">
           <ul className="flex flex-col gap-3 text-sm text-slate-300">
             {links.map((link) => {
               const isActive = pathname === link.href;

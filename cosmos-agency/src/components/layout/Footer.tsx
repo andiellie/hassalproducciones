@@ -5,6 +5,19 @@ export default function Footer() {
         <span>© {new Date().getFullYear()} Cosmos Agency. Todos los derechos reservados.</span>
         <span>Diseño & Producción fuera de la órbita común.</span>
       </div>
+      <div className="mx-auto mt-4 max-w-6xl text-center">
+        <span>
+          Website hecho por{" "}
+          <a
+            href="https://andiesgn.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 underline underline-offset-2 hover:text-slate-300"
+          >
+            Andiesgn
+          </a>
+        </span>
+      </div>
     </footer>
   );
 }

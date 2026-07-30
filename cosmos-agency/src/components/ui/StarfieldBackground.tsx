@@ -96,9 +96,9 @@ export default function StarfieldBackground() {
         // Estrellas de acento (Cosmos)
         const isAccent = star.size > 1.6;
         if (isAccent) {
-          ctx.fillStyle = `rgba(212, 255, 0, ${star.alpha})`;
+          ctx.fillStyle = `rgba(224, 238, 255, ${star.alpha})`;
           ctx.shadowBlur = 8;
-          ctx.shadowColor = '#d4ff00';
+          ctx.shadowColor = '#e0eeff';
         } else {
           ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
           ctx.shadowBlur = 0;
