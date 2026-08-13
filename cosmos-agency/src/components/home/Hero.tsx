@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -11,27 +11,16 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
 
       {/* 2. Glow Neón de Fondo (Aura Magenta/Cosmos) */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-[#d4ff00]/20 to-purple-600/30 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 h-[180px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#d4ff00]/20 to-purple-600/30 blur-[80px] pointer-events-none sm:h-[300px] sm:w-[500px] sm:blur-[120px]" />
 
       <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
-
-        {/* Badge Interactivo Top */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#d4ff00]/30 bg-[#d4ff00]/10 text-[#d4ff00] text-xs font-medium backdrop-blur-md mb-8 shadow-[0_0_15px_rgba(212,255,0,0.15)]"
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>COSMOS AGENCY</span>
-        </motion.div>
 
         {/* Título Principal con Degradado e Iluminación */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
+          className="font-heading text-5xl font-[650] tracking-tight leading-[1.1] md:text-7xl"
         >
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-[#d4ff00]">
             COSMOSAGENCYMX

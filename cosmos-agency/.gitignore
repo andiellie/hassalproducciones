@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# unoptimized source images and macOS resource-fork junk (not served by the app)
+public/imagenes/**/*.tif
+public/imagenes/**/*.tiff
+**/._*
+
+# stray empty files from a botched install command
+/.code
+/.npm
+/framer-motion
+/install
+/lucide-react

@@ -11,6 +11,34 @@ interface Star {
   twinkleSpeed: number;
   vx: number;
   vy: number;
+  color: string;
+  glowColor: string | null;
+}
+
+interface Galaxy {
+  x: number;
+  y: number;
+  radius: number;
+  colorStart: string;
+  colorEnd: string;
+}
+
+const STAR_COLORS: { color: string; glow: string | null; weight: number }[] = [
+  { color: '255, 255, 255', glow: null, weight: 6 },
+  { color: '255, 244, 214', glow: 'rgba(255, 224, 160, 0.6)', weight: 2 },
+  { color: '255, 214, 170', glow: 'rgba(255, 180, 120, 0.6)', weight: 1 },
+  { color: '198, 222, 255', glow: 'rgba(150, 190, 255, 0.6)', weight: 2 },
+  { color: '224, 238, 255', glow: 'rgba(224, 238, 255, 0.7)', weight: 1 },
+];
+
+function pickStarColor() {
+  const total = STAR_COLORS.reduce((sum, c) => sum + c.weight, 0);
+  let roll = Math.random() * total;
+  for (const entry of STAR_COLORS) {
+    if (roll < entry.weight) return entry;
+    roll -= entry.weight;
+  }
+  return STAR_COLORS[0];
 }
 
 export default function StarfieldBackground() {
@@ -25,6 +53,7 @@ export default function StarfieldBackground() {
 
     let animationFrameId: number;
     let stars: Star[] = [];
+    let galaxies: Galaxy[] = [];
 
     // Sensibilidad del movimiento con el mouse
     const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
@@ -32,25 +61,51 @@ export default function StarfieldBackground() {
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      initStars();
+      initField();
     };
 
-    const initStars = () => {
+    const initField = () => {
       stars = [];
-      // Cantidad de estrellas ajustada a la pantalla
-      const starCount = Math.floor((canvas.width * canvas.height) / 3000);
+      // Cantidad de estrellas ajustada a la pantalla (denso, tipo campo profundo)
+      const starCount = Math.floor((canvas.width * canvas.height) / 900);
 
       for (let i = 0; i < starCount; i++) {
-        const baseAlpha = Math.random() * 0.7 + 0.3;
+        const baseAlpha = Math.random() * 0.7 + 0.25;
+        const rand = Math.random();
+        // La mayoría son puntos diminutos, pocas son más grandes/brillantes
+        const size = rand > 0.985 ? Math.random() * 1.4 + 1.6 : Math.random() * 1.1 + 0.3;
+        const { color, glow } = pickStarColor();
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 1.5 + 0.5, // Tamaños variados
+          size,
           alpha: baseAlpha,
-          baseAlpha: baseAlpha,
-          twinkleSpeed: Math.random() * 0.015 + 0.005,
-          vx: (Math.random() - 0.5) * 0.2, // Deriva constante x
-          vy: (Math.random() - 0.5) * 0.2, // Deriva constante y
+          baseAlpha,
+          twinkleSpeed: Math.random() * 0.012 + 0.003,
+          vx: (Math.random() - 0.5) * 0.06,
+          vy: (Math.random() - 0.5) * 0.06,
+          color,
+          glowColor: size > 1.6 ? glow : null,
+        });
+      }
+
+      // Manchas difusas de galaxias/nebulosas lejanas, muy tenues
+      galaxies = [];
+      const galaxyCount = Math.max(4, Math.floor((canvas.width * canvas.height) / 500000));
+      const galaxyPalette: [string, string][] = [
+        ['rgba(120, 140, 200, 0.10)', 'rgba(120, 140, 200, 0)'],
+        ['rgba(200, 150, 120, 0.08)', 'rgba(200, 150, 120, 0)'],
+        ['rgba(150, 120, 190, 0.09)', 'rgba(150, 120, 190, 0)'],
+        ['rgba(212, 255, 0, 0.05)', 'rgba(212, 255, 0, 0)'],
+      ];
+      for (let i = 0; i < galaxyCount; i++) {
+        const [colorStart, colorEnd] = galaxyPalette[i % galaxyPalette.length];
+        galaxies.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 180 + 120,
+          colorStart,
+          colorEnd,
         });
       }
     };
@@ -69,6 +124,17 @@ export default function StarfieldBackground() {
       // Limpiar canvas con transparencia
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Nebulosas/galaxias de fondo (parallax mínimo, quedan "lejos")
+      galaxies.forEach((galaxy) => {
+        const gx = galaxy.x + mouse.x * 0.15;
+        const gy = galaxy.y + mouse.y * 0.15;
+        const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, galaxy.radius);
+        gradient.addColorStop(0, galaxy.colorStart);
+        gradient.addColorStop(1, galaxy.colorEnd);
+        ctx.fillStyle = gradient;
+        ctx.fillRect(gx - galaxy.radius, gy - galaxy.radius, galaxy.radius * 2, galaxy.radius * 2);
+      });
+
       stars.forEach((star) => {
         // Parpadeo suave (Twinkle effect)
         star.alpha += star.twinkleSpeed;
@@ -76,7 +142,7 @@ export default function StarfieldBackground() {
           star.twinkleSpeed = -star.twinkleSpeed;
         }
 
-        // Posición dinámicas con velocidad + mouse
+        // Posición dinámicas con velocidad + mouse (paralaje por tamaño = profundidad)
         const drawX = star.x + mouse.x * (star.size * 0.5);
         const drawY = star.y + mouse.y * (star.size * 0.5);
 
@@ -92,15 +158,12 @@ export default function StarfieldBackground() {
         // Renderizado de cada estrella con brillo
         ctx.beginPath();
         ctx.arc(drawX, drawY, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${star.color}, ${star.alpha})`;
 
-        // Estrellas de acento (Cosmos)
-        const isAccent = star.size > 1.6;
-        if (isAccent) {
-          ctx.fillStyle = `rgba(224, 238, 255, ${star.alpha})`;
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = '#e0eeff';
+        if (star.glowColor) {
+          ctx.shadowBlur = 6 + star.size * 2;
+          ctx.shadowColor = star.glowColor;
         } else {
-          ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
           ctx.shadowBlur = 0;
         }
 

@@ -1,10 +1,19 @@
+import ServiceAccordion from "./ServiceAccordion";
+import DomeGallery from "@/components/DomeGallery";
+import { getPhotoSample } from "@/lib/photos";
+
+// El grid de DomeGallery tiene `segments * 5` casillas; igualamos `segments`
+// a la cantidad de fotos disponibles (redondeando a múltiplos de 5) para que
+// no se repita ninguna imagen.
 export default function PhotoGallery() {
+  const photos = getPhotoSample().map((src) => ({ src, alt: "" }));
+  const segments = Math.max(4, Math.ceil(photos.length / 5));
+
   return (
-    <section className="mx-auto max-w-4xl px-6 py-16">
-      <h2 className="text-2xl font-bold sm:text-3xl">Fotografía</h2>
-      <p className="mt-4 text-slate-400">
-        Sesiones de producto, retrato corporativo y cobertura de eventos.
-      </p>
-    </section>
+    <ServiceAccordion title="Fotografía" fullscreen>
+      {photos.length > 0 && (
+        <DomeGallery images={photos} grayscale={false} segments={segments} />
+      )}
+    </ServiceAccordion>
   );
 }

@@ -1,7 +1,19 @@
+import TextPressure from "@/components/TextPressure";
+
 export default function ContactoPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16 text-center">
-      <h1 className="text-4xl font-bold">Contacto</h1>
+      <div className="relative h-24 sm:h-32">
+        <TextPressure
+          text="Contacto"
+          textColor="#ffffff"
+          minFontSize={36}
+          flex
+          width
+          weight
+          italic={false}
+        />
+      </div>
       <p className="mt-4 text-slate-400">
         ¿Tienes un proyecto en mente? Escríbenos directamente.
       </p>

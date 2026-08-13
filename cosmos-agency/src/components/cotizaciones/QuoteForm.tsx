@@ -40,7 +40,7 @@ export default function QuoteForm() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <h2 className="text-xl font-semibold">{steps[step]}</h2>
+        <h2 className="font-heading text-xl font-medium">{steps[step]}</h2>
 
         {step === 0 && (
           <div className="mt-6 space-y-4">

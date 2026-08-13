@@ -7,7 +7,6 @@ import { brand } from "@/lib/design-tokens";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/renta-equipo", label: "Renta de Equipo" },
   { href: "/cotizaciones", label: "Cotizaciones" },
   { href: "/contacto", label: "Contacto" },
 ];
@@ -17,8 +16,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-4 z-50 flex justify-center px-4">
-      <nav className="flex w-full max-w-[90rem] items-center justify-between gap-6 rounded-full border border-white/10 bg-slate-900/55 px-5 py-2.5 backdrop-blur-md">
+    <header className="sticky top-4 z-50 px-[60px]">
+      <nav className="mx-auto flex w-[1152px] max-w-full items-center justify-between gap-6 rounded-full border border-white/10 bg-slate-900/55 px-5 py-6 backdrop-blur-md">
         <Link href="/" className="flex items-center gap-2 text-sm font-bold text-white">
           <span
             className="text-base leading-none text-[#d4ff00]"
@@ -61,7 +60,7 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="absolute top-16 w-[calc(100%-2rem)] max-w-[90rem] rounded-2xl border border-white/10 bg-slate-900/90 p-4 backdrop-blur-md sm:hidden">
+        <div className="absolute top-16 w-[calc(100%-120px)] max-w-[1152px] rounded-2xl border border-white/10 bg-slate-900/90 p-4 backdrop-blur-md sm:hidden">
           <ul className="flex flex-col gap-3 text-sm text-slate-300">
             {links.map((link) => {
               const isActive = pathname === link.href;
