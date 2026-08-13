@@ -51,3 +51,6 @@ public/imagenes/**/*.tiff
 /framer-motion
 /install
 /lucide-react
+
+.vercel
+.env*

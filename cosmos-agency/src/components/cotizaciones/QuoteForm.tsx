@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import RangeSlider from "@/components/ui/RangeSlider";
 import type { QuoteFormData } from "@/types";
 
@@ -9,6 +10,7 @@ const steps = ["Datos de contacto", "Servicio", "Presupuesto", "Detalles"];
 
 export default function QuoteForm() {
   const [step, setStep] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
   const [data, setData] = useState<QuoteFormData>({
     name: "",
     email: "",
@@ -20,8 +22,27 @@ export default function QuoteForm() {
 
   const isLastStep = step === steps.length - 1;
 
+  if (submitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="mx-auto flex max-w-3xl flex-col items-center px-6 py-24 text-center"
+      >
+        <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#d4ff00]/30 bg-[#d4ff00]/10 shadow-[0_0_25px_rgba(212,255,0,0.15)]">
+          <CheckCircle2 className="h-8 w-8 text-[#d4ff00]" />
+        </div>
+        <h2 className="font-heading mt-6 text-2xl font-medium">¡Listo! Recibimos tu proyecto.</h2>
+        <p className="mt-2 max-w-md text-slate-400">
+          Te contactaremos pronto a {data.email || "tu correo"} para dar el siguiente paso.
+        </p>
+      </motion.div>
+    );
+  }
+
   return (
-    <div className="mx-auto max-w-xl px-6 py-16">
+    <div className="mx-auto max-w-3xl px-6 py-16">
       <div className="mb-8 flex items-center gap-2">
         {steps.map((label, i) => (
           <div key={label} className="flex-1">
@@ -111,17 +132,20 @@ export default function QuoteForm() {
         >
           Atrás
         </button>
-        <button
+        <motion.button
           type="button"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() =>
             isLastStep
-              ? console.log("submit quote", data)
+              ? setSubmitted(true)
               : setStep((s) => Math.min(steps.length - 1, s + 1))
           }
-          className="rounded-lg bg-[#d4ff00] px-5 py-2.5 text-sm font-medium text-black"
+          className="group flex items-center gap-2 rounded-lg bg-[#d4ff00] px-5 py-2.5 text-sm font-medium text-black"
         >
           {isLastStep ? "Enviar" : "Siguiente"}
-        </button>
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </motion.button>
       </div>
     </div>
   );

@@ -1,0 +1,8 @@
+public/imagenes/**/*.tif
+public/imagenes/**/*.tiff
+**/._*
+.code
+.npm
+framer-motion
+install
+lucide-react
