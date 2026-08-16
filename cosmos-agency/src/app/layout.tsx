@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans, Geist, Geist_Mono } from "next/font/google";
+import { Inclusive_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StarfieldBackground from "@/components/ui/StarfieldBackground";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-});
-
-const geistHeading = Geist({
-  variable: "--font-geist-heading",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inclusiveSans = Inclusive_Sans({
+  variable: "--font-inclusive-sans",
   subsets: ["latin"],
 });
 
@@ -33,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${dmSans.variable} ${geistHeading.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inclusiveSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#030712] text-white">
         <StarfieldBackground />

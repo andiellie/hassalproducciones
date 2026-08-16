@@ -1,24 +1,56 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 const steps = [
-  { title: "Descubrimiento", description: "Entendemos tu marca, objetivos y audiencia." },
-  { title: "Propuesta", description: "Definimos alcance, entregables y presupuesto." },
-  { title: "Producción", description: "Ejecutamos con nuestro equipo y herramientas propias." },
-  { title: "Entrega", description: "Iteramos y lanzamos con métricas claras de éxito." },
+  { title: "Cuéntanos sobre tu evento", description: "Compártenos la fecha, tipo de evento y lo que necesitas cubrir." },
+  { title: "Definimos la cobertura", description: "Te recomendamos el equipo y la cobertura adecuada para tu evento." },
+  { title: "Cubrimos el evento", description: "Nuestro equipo se encarga de capturar cada momento importante." },
+  { title: "Recibe tu material", description: "Editamos y entregamos tus fotografías y videos listos para disfrutar y compartir." },
 ];
 
 export default function StepsSection() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-24">
-      <h2 className="font-heading text-center text-3xl font-medium sm:text-4xl">Cómo trabajamos</h2>
+      <div className="mx-auto max-w-2xl text-center">
+        <motion.span
+          initial={{ width: "0%" }}
+          whileInView={{ width: "100%" }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 1.2, ease: "linear" }}
+          className="inline-block overflow-hidden whitespace-nowrap border-r-2 border-[#d4ff00] align-bottom"
+          style={{ animation: "cosmos-caret 0.8s steps(1) infinite" }}
+        >
+          <h2 className="font-heading text-3xl font-medium sm:text-4xl">Nuestro proceso</h2>
+        </motion.span>
+        <p className="mt-3 text-lg text-slate-300">De la planificación a la entrega, hacemos que todo sea simple.</p>
+        <p className="mt-4 text-slate-400">
+          Te acompañamos en cada etapa para coordinar la cobertura, producir el contenido y entregarte el material final.
+        </p>
+      </div>
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, i) => (
-          <div
+          <motion.div
             key={step.title}
-            className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 transition-transform duration-300 hover:scale-105"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
+            whileHover={{ y: -8, scale: 1.03 }}
+            className="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/40 p-6"
           >
-            <span className="text-sm font-medium text-[#d4ff00]">0{i + 1}</span>
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-[#d4ff00]/10 via-transparent to-transparent" />
+            <motion.span
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.15 }}
+              className="inline-block text-sm font-medium text-[#d4ff00] transition-transform duration-300 group-hover:-translate-y-1"
+            >
+              0{i + 1}
+            </motion.span>
             <h3 className="font-heading mt-2 text-lg font-medium">{step.title}</h3>
             <p className="mt-2 text-sm text-slate-400">{step.description}</p>
-          </div>
+            <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#d4ff00] transition-all duration-300 group-hover:w-full" />
+          </motion.div>
         ))}
       </div>
     </section>

@@ -2,6 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Poppins, EB_Garamond } from 'next/font/google';
+
+const poppins = Poppins({
+  weight: '700',
+  subsets: ['latin'],
+});
+
+const ebGaramond = EB_Garamond({
+  weight: '400',
+  style: 'italic',
+  subsets: ['latin'],
+});
 
 export default function Hero() {
   return (
@@ -20,10 +32,102 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-heading text-5xl font-[650] tracking-tight leading-[1.1] md:text-7xl"
+          className="leading-[1.15] pb-3"
+          style={{ fontSize: "90px" }}
         >
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-[#d4ff00]">
-            COSMOSAGENCYMX
+          <span className="flex items-center gap-0">
+          <span className={`${poppins.className} flex flex-col items-start bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-[#d4ff00]`}>
+          <span className="flex items-baseline">
+            c
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7, rotate: -15 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.9, delay: 0.6, ease: "easeOut" }}
+              className="relative inline-block"
+              style={{ marginLeft: "0.06em" }}
+            >
+              <span className="text-transparent">o</span>
+              {/* Anillo (mitad trasera, oculta detrás del planeta) */}
+              <svg
+                viewBox="0 0 100 46"
+                className="pointer-events-none absolute left-1/2 text-[#d4ff00]"
+                style={{
+                  top: "0.62em",
+                  width: "1.32em",
+                  height: "0.6em",
+                  zIndex: -2,
+                  transform: "translate(-50%, -50%) rotate(-16deg)",
+                }}
+              >
+                <ellipse
+                  cx="50"
+                  cy="23"
+                  rx="48"
+                  ry="15"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="6"
+                  opacity="0.95"
+                />
+              </svg>
+              {/* Planeta */}
+              <span
+                className="pointer-events-none absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={{
+                  top: "0.62em",
+                  width: "0.66em",
+                  height: "0.66em",
+                  zIndex: -1,
+                  background: "radial-gradient(circle at 35% 30%, #ffffff, #d9dee6 55%, #aab0bb 100%)",
+                }}
+              />
+              {/* Anillo (banda frontal, cruza sobre el planeta) */}
+              <svg
+                viewBox="0 0 100 46"
+                className="pointer-events-none absolute left-1/2 text-[#d4ff00]"
+                style={{
+                  top: "0.62em",
+                  width: "1.32em",
+                  height: "0.6em",
+                  zIndex: -1,
+                  transform: "translate(-50%, -50%) rotate(-16deg)",
+                }}
+              >
+                <path
+                  d="M 95.1 28.13 A 48 15 0 0 1 4.9 28.13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                  opacity="0.95"
+                />
+              </svg>
+            </motion.span>
+            s
+            <span className="inline-block" style={{ marginRight: "-0.16em" }}>
+              m
+            </span>
+            os
+          </span>
+          <span className={poppins.className} style={{ marginTop: "-0.3em" }}>
+            ag
+            <span className="inline-block" style={{ marginRight: "-0.16em" }}>
+              e
+            </span>
+            ncy
+          </span>
+          </span>
+          <span
+            className="inline-flex items-center justify-center overflow-visible"
+            style={{ width: "0.4em", fontSize: "90px" }}
+          >
+            <span
+              className={`${ebGaramond.className} whitespace-nowrap text-[#d4ff00]`}
+              style={{ transform: "rotate(-90deg)" }}
+            >
+              .mx
+            </span>
+          </span>
           </span>
         </motion.h1>
 
@@ -37,42 +141,23 @@ export default function Hero() {
           Tu evento termina. La experiencia no.
         </motion.p>
 
-        {/* Subtítulo */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 text-lg text-slate-400 max-w-2xl leading-relaxed font-normal"
-        >
-          Capturamos <span className="text-[#d4ff00]">la energía, personas y momentos</span> que hacen único cada evento, con un equipo audiovisual profesional.
-        </motion.p>
-
-        {/* Botones Estilo SaaS / Nodeflow */}
+        {/* Botón Estilo SaaS / Nodeflow */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+          className="mt-10 flex w-full items-center justify-center sm:w-auto"
         >
-          {/* Botón Principal con Hover de Brillo */}
           <motion.a
             href="#servicios"
-            whileHover={{ scale: 1.02 }}
+            animate={{ scale: [1, 1.015, 1] }}
+            transition={{ scale: { duration: 2.4, repeat: Infinity, ease: "easeInOut" } }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#d4ff00] text-black font-medium text-sm shadow-[0_0_25px_rgba(212,255,0,0.3)] hover:shadow-[0_0_35px_rgba(212,255,0,0.5)] transition-all duration-300 w-full sm:w-auto"
           >
             Ver nuestro trabajo
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </motion.a>
-
-          {/* Botón Secundario Vidrio / Minimalista */}
-          <motion.a
-            href="#cotizaciones"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl border border-slate-800 bg-slate-900/60 backdrop-blur-xl text-slate-300 font-medium text-sm hover:bg-slate-800/80 hover:text-white hover:border-slate-700 transition-all duration-200 w-full sm:w-auto"
-          >
-            Cotizar mi Evento
           </motion.a>
         </motion.div>
 

@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from "framer-motion";
 import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
 import StepsSection from "@/components/home/StepsSection";
@@ -7,9 +10,9 @@ import AccordionGallery from "@/components/ui/AccordionGallery";
 const eventCategories = [
   { image: "/imagenes/Fotografias/EVENTOS/BODA%20L%26R-142.jpg", label: "Bodas", link: "/servicios/fotografia" },
   { image: "/imagenes/Fotografias/EVENTOS/DSC05660.jpg", label: "Cumpleaños", link: "/servicios/fotografia" },
-  { image: "/imagenes/Fotografias/EVENTOS/DSC05772.jpg", label: "Bautizos", link: "/servicios/fotografia" },
-  { image: "/imagenes/Fotografias/MUSICA/DSC02065.jpg", label: "DJ", link: "/servicios/fotografia" },
-  { image: "/imagenes/Fotografias/EVENTOS/DSC05868.jpg", label: "Corporativos", link: "/servicios/fotografia" },
+  { image: "/imagenes/Fotografias/EVENTOS/DSC06055.jpg", label: "Comuniones y Bautizos", link: "/servicios/fotografia" },
+  { image: "/imagenes/Fotografias/MUSICA/IMG_3714.jpg", label: "Conciertos y Album Covers", link: "/servicios/fotografia" },
+  { image: "/imagenes/Fotografias/EVENTOS/DSC05868.jpg", label: "Podcasts", link: "/servicios/fotografia" },
 ];
 
 const logos = [
@@ -34,6 +37,23 @@ export default function Home() {
       <Hero />
       <AboutSection />
       <StepsSection />
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 pb-16">
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-2xl font-medium text-slate-200 sm:text-3xl"
+        >
+          ¿Tienes un evento en mente?
+        </motion.p>
+        <a
+          href="/cotizaciones"
+          className="inline-flex items-center justify-center rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black shadow-[0_0_25px_rgba(212,255,0,0.3)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(212,255,0,0.5)]"
+        >
+          Cotizar mi Evento
+        </a>
+      </div>
       <div className="mx-auto max-w-6xl px-6 py-16">
         <AccordionGallery items={eventCategories} />
       </div>

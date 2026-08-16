@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { brand } from "@/lib/design-tokens";
+import SaturnIcon from "@/components/ui/SaturnIcon";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
@@ -33,16 +33,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-4 z-50 px-[60px]">
       <nav className="relative mx-auto flex w-[1152px] max-w-full items-center justify-between gap-6 rounded-full border border-white/10 bg-slate-900/55 px-5 py-6 backdrop-blur-md">
-        <Link href="/" className="flex items-center gap-2">
-          <span
-            className="text-base leading-none text-[#d4ff00]"
-            style={{ textShadow: "0 0 8px rgba(212,255,0,0.7)" }}
-          >
-            ✦
-          </span>
-          <span className="font-heading text-sm font-[650] uppercase tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-[#d4ff00]">
-            {brand.name}
-          </span>
+        <Link href="/" className="flex items-center">
+          <SaturnIcon size={28} />
         </Link>
 
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-sm text-slate-300 lg:flex">
