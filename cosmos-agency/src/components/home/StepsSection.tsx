@@ -26,9 +26,6 @@ export default function StepsSection() {
           <h2 className="font-heading text-3xl font-medium sm:text-4xl">Nuestro proceso</h2>
         </motion.span>
         <p className="mt-3 text-lg text-slate-300">De la planificación a la entrega, hacemos que todo sea simple.</p>
-        <p className="mt-4 text-slate-400">
-          Te acompañamos en cada etapa para coordinar la cobertura, producir el contenido y entregarte el material final.
-        </p>
       </div>
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, i) => (

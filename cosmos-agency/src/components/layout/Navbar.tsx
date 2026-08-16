@@ -7,8 +7,6 @@ import SaturnIcon from "@/components/ui/SaturnIcon";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/servicios/fotografia", label: "Fotografía" },
-  { href: "/servicios/video", label: "Video" },
   { href: "/cotizaciones", label: "Cotizaciones" },
   { href: "/contacto", label: "Contacto" },
 ];
