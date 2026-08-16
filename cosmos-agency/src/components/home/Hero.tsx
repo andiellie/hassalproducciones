@@ -19,10 +19,7 @@ export default function Hero() {
   return (
     <div className="relative min-h-screen text-white flex flex-col items-center justify-center px-6 overflow-hidden font-sans">
 
-      {/* 1. Fondo de Cuadrícula Tecnológica (Grid Pattern) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-
-      {/* 2. Glow Neón de Fondo (Aura Magenta/Cosmos) */}
+      {/* Glow Neón de Fondo (Aura Magenta/Cosmos) */}
       <div className="absolute top-1/4 left-1/2 h-[180px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#d4ff00]/20 to-purple-600/30 blur-[80px] pointer-events-none sm:h-[300px] sm:w-[500px] sm:blur-[120px]" />
 
       <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
@@ -47,7 +44,7 @@ export default function Hero() {
               style={{ marginLeft: "0.06em" }}
             >
               <span className="text-transparent">o</span>
-              {/* Anillo (mitad trasera, oculta detrás del planeta) */}
+              {/* Anillo */}
               <svg
                 viewBox="0 0 100 46"
                 className="pointer-events-none absolute left-1/2 text-[#d4ff00]"
@@ -55,7 +52,7 @@ export default function Hero() {
                   top: "0.62em",
                   width: "1.32em",
                   height: "0.6em",
-                  zIndex: -2,
+                  zIndex: -1,
                   transform: "translate(-50%, -50%) rotate(-16deg)",
                 }}
               >
@@ -70,38 +67,16 @@ export default function Hero() {
                   opacity="0.95"
                 />
               </svg>
-              {/* Planeta */}
+              {/* Planeta (al frente) */}
               <span
                 className="pointer-events-none absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
                 style={{
                   top: "0.62em",
                   width: "0.66em",
                   height: "0.66em",
-                  zIndex: -1,
                   background: "radial-gradient(circle at 35% 30%, #ffffff, #d9dee6 55%, #aab0bb 100%)",
                 }}
               />
-              {/* Anillo (banda frontal, cruza sobre el planeta) */}
-              <svg
-                viewBox="0 0 100 46"
-                className="pointer-events-none absolute left-1/2 text-[#d4ff00]"
-                style={{
-                  top: "0.62em",
-                  width: "1.32em",
-                  height: "0.6em",
-                  zIndex: -1,
-                  transform: "translate(-50%, -50%) rotate(-16deg)",
-                }}
-              >
-                <path
-                  d="M 95.1 28.13 A 48 15 0 0 1 4.9 28.13"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  opacity="0.95"
-                />
-              </svg>
             </motion.span>
             s
             <span className="inline-block" style={{ marginRight: "-0.16em" }}>
@@ -138,7 +113,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="mt-4 text-xl font-medium text-white md:text-2xl"
         >
-          Tu evento termina. La experiencia no.
+          Tu evento termina. <span className="italic">La experiencia no.</span>
         </motion.p>
 
         {/* Botón Estilo SaaS / Nodeflow */}

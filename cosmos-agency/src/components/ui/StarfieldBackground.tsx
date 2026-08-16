@@ -15,12 +15,29 @@ interface Star {
   glowColor: string | null;
 }
 
+interface Puff {
+  offsetAngle: number;
+  offsetRadius: number;
+  size: number;
+  wobblePhase: number;
+  wobbleSpeed: number;
+  wobbleAmount: number;
+}
+
 interface Galaxy {
   x: number;
   y: number;
   radius: number;
+  centerX: number;
+  centerY: number;
+  angle: number;
+  angularSpeed: number;
+  breathPhase: number;
+  breathSpeed: number;
+  maxOrbitRadius: number;
   colorStart: string;
   colorEnd: string;
+  puffs: Puff[];
 }
 
 const STAR_COLORS: { color: string; glow: string | null; weight: number }[] = [
@@ -54,9 +71,6 @@ export default function StarfieldBackground() {
     let animationFrameId: number;
     let stars: Star[] = [];
     let galaxies: Galaxy[] = [];
-
-    // Sensibilidad del movimiento con el mouse
-    const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -97,43 +111,83 @@ export default function StarfieldBackground() {
         ['rgba(200, 150, 120, 0.08)', 'rgba(200, 150, 120, 0)'],
         ['rgba(150, 120, 190, 0.09)', 'rgba(150, 120, 190, 0)'],
         ['rgba(212, 255, 0, 0.05)', 'rgba(212, 255, 0, 0)'],
+        ['rgba(80, 200, 220, 0.08)', 'rgba(80, 200, 220, 0)'],
+        ['rgba(230, 90, 160, 0.08)', 'rgba(230, 90, 160, 0)'],
+        ['rgba(255, 130, 70, 0.07)', 'rgba(255, 130, 70, 0)'],
+        ['rgba(90, 100, 230, 0.09)', 'rgba(90, 100, 230, 0)'],
+        ['rgba(60, 220, 160, 0.06)', 'rgba(60, 220, 160, 0)'],
       ];
       for (let i = 0; i < galaxyCount; i++) {
         const [colorStart, colorEnd] = galaxyPalette[i % galaxyPalette.length];
+        const centerX = Math.random() * canvas.width;
+        const centerY = Math.random() * canvas.height;
+        const maxOrbitRadius = Math.random() * 220 + 140;
+        const angle = Math.random() * Math.PI * 2;
+        const breathPhase = Math.random() * Math.PI * 2;
+        const orbitRadius = maxOrbitRadius * (0.5 + 0.5 * Math.sin(breathPhase));
+        const galaxyRadius = Math.random() * 180 + 120;
+        const puffCount = Math.floor(Math.random() * 3) + 4;
+        const puffs: Puff[] = [];
+        for (let p = 0; p < puffCount; p++) {
+          puffs.push({
+            offsetAngle: Math.random() * Math.PI * 2,
+            offsetRadius: Math.random() * galaxyRadius * 0.55,
+            size: galaxyRadius * (Math.random() * 0.4 + 0.5),
+            wobblePhase: Math.random() * Math.PI * 2,
+            wobbleSpeed: Math.random() * 0.008 + 0.003,
+            wobbleAmount: galaxyRadius * (Math.random() * 0.15 + 0.08),
+          });
+        }
         galaxies.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 180 + 120,
+          x: centerX + Math.cos(angle) * orbitRadius,
+          y: centerY + Math.sin(angle) * orbitRadius,
+          radius: galaxyRadius,
+          centerX,
+          centerY,
+          angle,
+          angularSpeed: (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 0.01 + 0.006),
+          breathPhase,
+          breathSpeed: Math.random() * 0.006 + 0.004,
+          maxOrbitRadius,
           colorStart,
           colorEnd,
+          puffs,
         });
       }
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      // Movimiento suave respecto al centro de la pantalla
-      mouse.targetX = (e.clientX - canvas.width / 2) * 0.02;
-      mouse.targetY = (e.clientY - canvas.height / 2) * 0.02;
-    };
-
     const draw = () => {
-      // Suavizado del movimiento de cámara del mouse (Easing)
-      mouse.x += (mouse.targetX - mouse.x) * 0.05;
-      mouse.y += (mouse.targetY - mouse.y) * 0.05;
-
       // Limpiar canvas con transparencia
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Nebulosas/galaxias de fondo (parallax mínimo, quedan "lejos")
+      // Nebulosas: se mueven solas y se mezclan aditivamente donde se intersectan
+      ctx.globalCompositeOperation = 'lighter';
       galaxies.forEach((galaxy) => {
-        const gx = galaxy.x + mouse.x * 0.15;
-        const gy = galaxy.y + mouse.y * 0.15;
-        const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, galaxy.radius);
-        gradient.addColorStop(0, galaxy.colorStart);
-        gradient.addColorStop(1, galaxy.colorEnd);
-        ctx.fillStyle = gradient;
-        ctx.fillRect(gx - galaxy.radius, gy - galaxy.radius, galaxy.radius * 2, galaxy.radius * 2);
+        // Órbita en espiral: gira alrededor de su centro mientras el radio crece,
+        // remolino: gira y respira in/out continuamente (sin saltos) como un caracol
+        galaxy.angle += galaxy.angularSpeed;
+        galaxy.breathPhase += galaxy.breathSpeed;
+        const orbitRadius = galaxy.maxOrbitRadius * (0.5 + 0.5 * Math.sin(galaxy.breathPhase));
+        galaxy.x = galaxy.centerX + Math.cos(galaxy.angle) * orbitRadius;
+        galaxy.y = galaxy.centerY + Math.sin(galaxy.angle) * orbitRadius;
+
+        // Cada nebulosa se dibuja como varias "bocanadas" de gas que se mecen
+        // de forma independiente, en vez de un círculo perfecto y uniforme.
+        galaxy.puffs.forEach((puff) => {
+          puff.wobblePhase += puff.wobbleSpeed;
+          const wobbleX = Math.cos(puff.wobblePhase) * puff.wobbleAmount;
+          const wobbleY = Math.sin(puff.wobblePhase * 0.8) * puff.wobbleAmount;
+          const px = galaxy.x + Math.cos(puff.offsetAngle) * puff.offsetRadius + wobbleX;
+          const py = galaxy.y + Math.sin(puff.offsetAngle) * puff.offsetRadius + wobbleY;
+
+          const gradient = ctx.createRadialGradient(px, py, 0, px, py, puff.size);
+          gradient.addColorStop(0, galaxy.colorStart);
+          gradient.addColorStop(1, galaxy.colorEnd);
+          ctx.fillStyle = gradient;
+          ctx.fillRect(px - puff.size, py - puff.size, puff.size * 2, puff.size * 2);
+        });
       });
+      ctx.globalCompositeOperation = 'source-over';
 
       stars.forEach((star) => {
         // Parpadeo suave (Twinkle effect)
@@ -142,9 +196,8 @@ export default function StarfieldBackground() {
           star.twinkleSpeed = -star.twinkleSpeed;
         }
 
-        // Posición dinámicas con velocidad + mouse (paralaje por tamaño = profundidad)
-        const drawX = star.x + mouse.x * (star.size * 0.5);
-        const drawY = star.y + mouse.y * (star.size * 0.5);
+        const drawX = star.x;
+        const drawY = star.y;
 
         // Movimiento continuo en bucle (Wrap around borders)
         star.x += star.vx;
@@ -155,19 +208,47 @@ export default function StarfieldBackground() {
         if (star.y < 0) star.y = canvas.height;
         if (star.y > canvas.height) star.y = 0;
 
-        // Renderizado de cada estrella con brillo
+        // Núcleo suave con caída radial (más realista que un círculo plano)
+        const coreRadius = star.size * 1.8;
+        const glow = ctx.createRadialGradient(drawX, drawY, 0, drawX, drawY, coreRadius);
+        glow.addColorStop(0, `rgba(${star.color}, ${star.alpha})`);
+        glow.addColorStop(0.4, `rgba(${star.color}, ${star.alpha * 0.5})`);
+        glow.addColorStop(1, `rgba(${star.color}, 0)`);
+
+        ctx.shadowBlur = 0;
         ctx.beginPath();
-        ctx.arc(drawX, drawY, star.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${star.color}, ${star.alpha})`;
-
-        if (star.glowColor) {
-          ctx.shadowBlur = 6 + star.size * 2;
-          ctx.shadowColor = star.glowColor;
-        } else {
-          ctx.shadowBlur = 0;
-        }
-
+        ctx.arc(drawX, drawY, coreRadius, 0, Math.PI * 2);
+        ctx.fillStyle = glow;
         ctx.fill();
+
+        // Núcleo puntiagudo (rombo/destello de 4 picos) en vez de un punto redondo
+        const spikeOuter = star.size * 1.6;
+        const spikeInner = star.size * 0.4;
+        ctx.beginPath();
+        ctx.moveTo(drawX, drawY - spikeOuter);
+        ctx.lineTo(drawX + spikeInner, drawY - spikeInner);
+        ctx.lineTo(drawX + spikeOuter, drawY);
+        ctx.lineTo(drawX + spikeInner, drawY + spikeInner);
+        ctx.lineTo(drawX, drawY + spikeOuter);
+        ctx.lineTo(drawX - spikeInner, drawY + spikeInner);
+        ctx.lineTo(drawX - spikeOuter, drawY);
+        ctx.lineTo(drawX - spikeInner, drawY - spikeInner);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${star.color}, ${star.alpha})`;
+        ctx.fill();
+
+        // Picos de difracción sutiles solo en las estrellas más brillantes
+        if (star.glowColor) {
+          const spikeLen = star.size * 3.2;
+          ctx.strokeStyle = `rgba(${star.color}, ${star.alpha * 0.35})`;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(drawX - spikeLen, drawY);
+          ctx.lineTo(drawX + spikeLen, drawY);
+          ctx.moveTo(drawX, drawY - spikeLen);
+          ctx.lineTo(drawX, drawY + spikeLen);
+          ctx.stroke();
+        }
       });
 
       animationFrameId = requestAnimationFrame(draw);
@@ -175,14 +256,12 @@ export default function StarfieldBackground() {
 
     // Listeners
     window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', handleMouseMove);
 
     resizeCanvas();
     draw();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

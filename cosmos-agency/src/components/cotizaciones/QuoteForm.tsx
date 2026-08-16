@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import RangeSlider from "@/components/ui/RangeSlider";
 import type { QuoteFormData } from "@/types";
 
-const steps = ["Datos de contacto", "Servicio", "Presupuesto", "Detalles"];
+const steps = ["Cuéntanos sobre tu evento", "Servicio", "Presupuesto", "Detalles"];
 
 export default function QuoteForm() {
   const [step, setStep] = useState(0);
@@ -143,7 +143,7 @@ export default function QuoteForm() {
           }
           className="group flex items-center gap-2 rounded-lg bg-[#d4ff00] px-5 py-2.5 text-sm font-medium text-black"
         >
-          {isLastStep ? "Enviar" : "Siguiente"}
+          {isLastStep ? "Cotizar" : "Siguiente"}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </motion.button>
       </div>

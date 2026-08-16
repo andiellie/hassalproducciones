@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 
 const steps = [
   { title: "Cuéntanos sobre tu evento", description: "Compártenos la fecha, tipo de evento y lo que necesitas cubrir." },
@@ -40,6 +42,15 @@ export default function StepsSection() {
             className="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/40 p-6"
           >
             <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-[#d4ff00]/10 via-transparent to-transparent" />
+            {i === 0 && (
+              <Link
+                href="/cotizaciones"
+                className="absolute top-4 right-4 z-10 flex items-center gap-1 text-xs font-medium text-[#d4ff00] transition-transform hover:translate-x-0.5 hover:-translate-y-0.5"
+              >
+                Cotizar
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            )}
             <motion.span
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.15 }}
