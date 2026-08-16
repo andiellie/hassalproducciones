@@ -1,19 +1,10 @@
 import QuoteForm from "@/components/cotizaciones/QuoteForm";
-import TextPressure from "@/components/TextPressure";
 
 export default function CotizacionesPage() {
   return (
     <div>
-      <div className="relative mx-auto h-40 max-w-3xl px-6 pt-16 sm:h-56">
-        <TextPressure
-          text="Cotizaciones"
-          textColor="#ffffff"
-          minFontSize={36}
-          flex
-          width
-          weight
-          italic={false}
-        />
+      <div className="mx-auto max-w-3xl px-6 pt-16 text-left">
+        <h1 className="text-4xl font-bold text-white sm:text-5xl">Cotizaciones</h1>
       </div>
       <QuoteForm />
     </div>

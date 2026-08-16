@@ -27,6 +27,16 @@ export default function Hero() {
           </span>
         </motion.h1>
 
+        {/* Tagline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="mt-4 text-xl font-medium text-white md:text-2xl"
+        >
+          Tu evento termina. La experiencia no.
+        </motion.p>
+
         {/* Subtítulo */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -34,7 +44,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-6 text-lg text-slate-400 max-w-2xl leading-relaxed font-normal"
         >
-          Desarrollamos marcas, contenido audiovisual de alto impacto y experiencias digitales optimizadas al milímetro.
+          Capturamos <span className="text-[#d4ff00]">la energía, personas y momentos</span> que hacen único cada evento, con un equipo audiovisual profesional.
         </motion.p>
 
         {/* Botones Estilo SaaS / Nodeflow */}
@@ -46,23 +56,23 @@ export default function Hero() {
         >
           {/* Botón Principal con Hover de Brillo */}
           <motion.a
-            href="#cotizaciones"
+            href="#servicios"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#d4ff00] text-black font-medium text-sm shadow-[0_0_25px_rgba(212,255,0,0.3)] hover:shadow-[0_0_35px_rgba(212,255,0,0.5)] transition-all duration-300 w-full sm:w-auto"
           >
-            Iniciar Proyecto
+            Ver nuestro trabajo
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </motion.a>
 
           {/* Botón Secundario Vidrio / Minimalista */}
           <motion.a
-            href="#servicios"
+            href="#cotizaciones"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl border border-slate-800 bg-slate-900/60 backdrop-blur-xl text-slate-300 font-medium text-sm hover:bg-slate-800/80 hover:text-white hover:border-slate-700 transition-all duration-200 w-full sm:w-auto"
           >
-            Explorar Servicios
+            Cotizar mi Evento
           </motion.a>
         </motion.div>
 

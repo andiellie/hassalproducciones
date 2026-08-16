@@ -1,19 +1,7 @@
-import TextPressure from "@/components/TextPressure";
-
 export default function ContactoPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-      <div className="relative h-40 sm:h-56">
-        <TextPressure
-          text="Contacto"
-          textColor="#ffffff"
-          minFontSize={36}
-          flex
-          width
-          weight
-          italic={false}
-        />
-      </div>
+      <h1 className="text-4xl font-bold text-white sm:text-5xl">Contacto</h1>
       <p className="mt-12 text-slate-400">
         ¿Tienes un proyecto en mente? Escríbenos directamente.
       </p>
@@ -33,7 +21,7 @@ export default function ContactoPage() {
         href="/cotizaciones"
         className="mt-10 inline-block rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black"
       >
-        Iniciar Proyecto
+        Cotizar mi Evento
       </a>
     </div>
   );
