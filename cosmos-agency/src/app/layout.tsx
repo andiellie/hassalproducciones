@@ -25,11 +25,11 @@ export default function RootLayout({
       lang="es"
       className={`${inclusiveSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#030712] text-white">
+      <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden bg-[#030712] text-white">
         <StarfieldBackground />
-        <div className="relative z-10 flex min-h-full flex-1 flex-col">
+        <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col">
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="min-w-0 flex-1">{children}</main>
           <Footer />
         </div>
       </body>

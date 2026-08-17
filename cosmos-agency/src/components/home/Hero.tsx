@@ -22,7 +22,7 @@ export default function Hero() {
       {/* Glow Neón de Fondo (Aura Magenta/Cosmos) */}
       <div className="absolute top-1/4 left-1/2 h-[180px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#d4ff00]/20 to-purple-600/30 blur-[80px] pointer-events-none sm:h-[300px] sm:w-[500px] sm:blur-[120px]" />
 
-      <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
+      <div className="relative z-10 flex w-full max-w-4xl min-w-0 flex-col items-center text-center">
 
         {/* Título Principal con Degradado e Iluminación */}
         <motion.h1
@@ -30,7 +30,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
           className="leading-[1.15] pb-3"
-          style={{ fontSize: "90px" }}
+          style={{ fontSize: "clamp(2.25rem, 6vw + 1rem, 90px)", ["--hero-size" as string]: "clamp(2.25rem, 6vw + 1rem, 90px)" }}
         >
           <span className="flex items-center gap-0">
           <span className={`${poppins.className} flex flex-col items-start bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-[#d4ff00]`}>
@@ -94,7 +94,7 @@ export default function Hero() {
           </span>
           <span
             className="inline-flex items-center justify-center overflow-visible"
-            style={{ width: "0.4em", fontSize: "90px" }}
+            style={{ width: "0.4em", fontSize: "var(--hero-size, 90px)" }}
           >
             <span
               className={`${ebGaramond.className} whitespace-nowrap text-[#d4ff00]`}
@@ -111,7 +111,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="mt-4 text-xl font-medium text-white md:text-2xl"
+          className="mt-4 w-full min-w-0 text-xl font-medium text-white md:text-2xl"
         >
           Tu evento termina. <span className="italic">La experiencia no.</span>
         </motion.p>

@@ -29,8 +29,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-4 z-50 px-[60px]">
-      <nav className="relative mx-auto flex w-[1152px] max-w-full items-center justify-between gap-6 rounded-full border border-white/10 bg-slate-900/55 px-5 py-6 backdrop-blur-md">
+    <header className="sticky top-4 z-50 px-4 sm:px-6 lg:px-[60px]">
+      <nav className="relative mx-auto flex w-full max-w-[1152px] items-center justify-between gap-6 rounded-full border border-white/10 bg-slate-900/55 px-4 py-4 backdrop-blur-md sm:px-5 sm:py-6">
         <Link href="/" className="flex items-center">
           <SaturnIcon size={28} />
         </Link>
@@ -69,7 +69,7 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="absolute top-16 w-[calc(100%-120px)] max-w-[1152px] rounded-2xl border border-white/10 bg-slate-900/90 p-4 backdrop-blur-md lg:hidden">
+        <div className="absolute top-16 left-4 right-4 max-w-[1152px] rounded-2xl border border-white/10 bg-slate-900/90 p-4 backdrop-blur-md sm:left-6 sm:right-6 lg:hidden">
           <ul className="flex flex-col gap-3 text-sm text-slate-300">
             {links.map((link) => {
               const { path, hash: linkHash } = splitHref(link.href);
