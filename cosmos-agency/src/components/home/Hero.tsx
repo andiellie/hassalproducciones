@@ -124,7 +124,7 @@ export default function Hero() {
           className="mt-10 flex w-full items-center justify-center sm:w-auto"
         >
           <motion.a
-            href="#servicios"
+            href="/servicios"
             animate={{ scale: [1, 1.015, 1] }}
             transition={{ scale: { duration: 2.4, repeat: Infinity, ease: "easeInOut" } }}
             whileHover={{ scale: 1.05 }}

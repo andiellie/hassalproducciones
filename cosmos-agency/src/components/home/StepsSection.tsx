@@ -14,7 +14,7 @@ const steps = [
 export default function StepsSection() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-24">
-      <div className="mx-auto max-w-2xl text-center">
+      <div className="mx-auto max-w-2xl text-left">
         <motion.span
           initial={{ width: "0%" }}
           whileInView={{ width: "100%" }}
@@ -23,7 +23,7 @@ export default function StepsSection() {
           className="inline-block overflow-hidden whitespace-nowrap border-r-2 border-[#d4ff00] align-bottom"
           style={{ animation: "cosmos-caret 0.8s steps(1) infinite" }}
         >
-          <h2 className="font-heading text-3xl font-medium sm:text-4xl">Nuestro proceso</h2>
+          <h2 className="font-heading text-3xl font-medium sm:text-4xl">Pasos para ser parte de tu evento</h2>
         </motion.span>
         <p className="mt-3 text-lg text-slate-300">De la planificación a la entrega, hacemos que todo sea simple.</p>
       </div>
