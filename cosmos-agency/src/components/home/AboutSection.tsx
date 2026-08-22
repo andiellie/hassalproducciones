@@ -6,7 +6,7 @@ export default function AboutSection() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-24">
       <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-left backdrop-blur-xl sm:p-12">
-        <h2 className="font-heading text-3xl font-medium sm:text-4xl">¿Qué es diferente en Cosmos?</h2>
+        <h2 className="font-heading mt-2 text-3xl font-medium sm:mt-4 sm:text-4xl">¿Qué es diferente en Cosmos?</h2>
         <p className="mt-6 text-lg leading-relaxed text-white">
           Somos una agencia creativa versátil.
         </p>

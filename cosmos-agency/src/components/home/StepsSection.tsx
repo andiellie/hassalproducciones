@@ -15,7 +15,7 @@ export default function StepsSection() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-24">
       <div className="mx-auto max-w-2xl text-left">
-        <h2 className="font-heading text-3xl font-medium sm:text-4xl">Pasos para ser parte de tu evento</h2>
+        <h2 className="font-heading mt-2 text-3xl font-medium sm:mt-4 sm:text-4xl">Pasos para ser parte de tu evento</h2>
         <p className="mt-3 text-lg text-white">De la planificación a la entrega, hacemos que todo sea simple.</p>
       </div>
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

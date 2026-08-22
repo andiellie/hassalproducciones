@@ -37,7 +37,7 @@ export default function Home() {
       <Hero />
       <AboutSection />
       <StepsSection />
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 pb-16">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 pt-16 pb-16">
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

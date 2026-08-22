@@ -24,10 +24,12 @@ function WallRow({
   items,
   direction,
   duration,
+  large = false,
 }: {
   items: PhotoWallItem[];
   direction: "left" | "right";
   duration: number;
+  large?: boolean;
 }) {
   const track = [...items, ...items];
 
@@ -41,13 +43,15 @@ function WallRow({
         {track.map((item, i) => (
           <div
             key={`${item.id}-${i}`}
-            className="group relative h-40 w-56 shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-72"
+            className={`group relative shrink-0 overflow-hidden rounded-xl ${
+              large ? "h-56 w-80 sm:h-72 sm:w-[26rem]" : "h-40 w-56 sm:h-48 sm:w-72"
+            }`}
           >
             <Image
               src={item.image}
               alt={item.label}
               fill
-              sizes="288px"
+              sizes={large ? "416px" : "288px"}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               draggable={false}
             />
@@ -65,7 +69,7 @@ export default function PhotoWall({ items, className = "" }: PhotoWallProps) {
   return (
     <div className={`flex flex-col gap-4 px-6 ${className}`}>
       {rows.map((row, i) => (
-        <WallRow key={i} items={row} direction={directions[i]} duration={30} />
+        <WallRow key={i} items={row} direction={directions[i]} duration={30} large={i === 2} />
       ))}
     </div>
   );
