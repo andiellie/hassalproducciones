@@ -54,6 +54,8 @@ const inputClass =
 export default function QuoteForm() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
   const [data, setData] = useState<QuoteFormData>({
     name: "",
     companyType: "",
@@ -78,6 +80,24 @@ export default function QuoteForm() {
         ? d.contactMethods.filter((m) => m !== method)
         : [...d.contactMethods, method],
     }));
+  };
+
+  const handleSubmit = async () => {
+    setSending(true);
+    setError(false);
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -136,7 +156,7 @@ export default function QuoteForm() {
             />
 
             <div>
-              <p className="mb-2 text-sm text-white/70">Tipo de empresa</p>
+              <p className="mb-2 text-sm font-medium text-white">Tipo de empresa</p>
               <TagSelector
                 options={companyTypes}
                 value={data.companyType}
@@ -145,7 +165,7 @@ export default function QuoteForm() {
             </div>
 
             <div>
-              <p className="mb-2 text-sm text-white/70">Contacto</p>
+              <p className="mb-2 text-sm font-medium text-white">Contacto</p>
               <div className="space-y-3">
                 <input
                   type="email"
@@ -169,7 +189,7 @@ export default function QuoteForm() {
         {step === 1 && (
           <div className="mt-6 space-y-5">
             <div>
-              <p className="mb-2 text-sm text-white/70">Tipo de servicio *</p>
+              <p className="mb-2 text-sm font-medium text-white">Tipo de servicio *</p>
               <TagSelector
                 options={serviceTypes}
                 value={data.serviceType}
@@ -178,8 +198,8 @@ export default function QuoteForm() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm text-white/70">
-                Fecha estimada * <span className="text-white/50">(rango de 5 días)</span>
+              <label className="mb-2 block text-sm font-medium text-white">
+                Fecha estimada * <span className="text-white/70">(rango de 5 días)</span>
               </label>
               <input
                 type="date"
@@ -227,7 +247,7 @@ export default function QuoteForm() {
             />
 
             <div>
-              <p className="mb-2 text-sm text-white/70">Medio de contacto preferido</p>
+              <p className="mb-2 text-sm font-medium text-white">Medio de contacto preferido</p>
               <div className="flex flex-wrap gap-4">
                 {contactMethodOptions.map((method) => (
                   <label key={method} className="flex items-center gap-2 text-sm text-white">
@@ -259,15 +279,15 @@ export default function QuoteForm() {
           type="button"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          disabled={!isStepValid}
+          disabled={!isStepValid || sending}
           onClick={() =>
             isLastStep
-              ? setSubmitted(true)
+              ? handleSubmit()
               : setStep((s) => Math.min(steps.length - 1, s + 1))
           }
           className="group flex items-center gap-2 rounded-lg bg-[#d4ff00] px-5 py-2.5 text-sm font-medium text-black disabled:opacity-40"
         >
-          {isLastStep ? "Enviar" : "Siguiente"}
+          {isLastStep ? (sending ? "Enviando..." : "Enviar") : "Siguiente"}
           <MorphIcon
             icon={ArrowRight}
             size={16}
@@ -275,6 +295,11 @@ export default function QuoteForm() {
           />
         </motion.button>
       </div>
+      {error && (
+        <p className="mt-4 text-center text-sm text-red-400">
+          Hubo un problema al enviar tu solicitud. Intenta de nuevo o escríbenos por WhatsApp.
+        </p>
+      )}
     </div>
   );
 }
