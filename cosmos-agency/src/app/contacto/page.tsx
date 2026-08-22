@@ -11,40 +11,42 @@ function WhatsAppIcon() {
 
 export default function ContactoPage() {
   return (
-    <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
+    <div className="relative">
       <GalaxyBackdrop />
-      <h1 className="text-4xl font-bold text-white sm:text-5xl">Contacto</h1>
-      <p className="mt-12 text-white">
-        ¿Tienes un proyecto en mente? Escríbenos directamente.
-      </p>
-      <div className="mt-8 space-y-2 text-white">
-        <p>
-          <a
-            href="mailto:ahanostyle@gmail.com"
-            className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
-          >
-            <Mail className="h-4 w-4" />
-            ahanostyle@gmail.com
-          </a>
+      <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
+        <h1 className="text-4xl font-bold text-white sm:text-5xl">Contacto</h1>
+        <p className="mt-12 text-white">
+          ¿Tienes un proyecto en mente? Escríbenos directamente.
         </p>
-        <p>
-          <a
-            href="https://wa.link/utfco7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
-          >
-            <WhatsAppIcon />
-            +52 1 55 6245 3891
-          </a>
-        </p>
+        <div className="mt-8 space-y-2 text-white">
+          <p>
+            <a
+              href="mailto:ahanostyle@gmail.com"
+              className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
+            >
+              <Mail className="h-4 w-4" />
+              ahanostyle@gmail.com
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://wa.link/utfco7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
+            >
+              <WhatsAppIcon />
+              +52 1 55 6245 3891
+            </a>
+          </p>
+        </div>
+        <a
+          href="/cotizaciones"
+          className="mt-10 inline-block rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black transition-transform hover:scale-105"
+        >
+          Cotizar mi Evento
+        </a>
       </div>
-      <a
-        href="/cotizaciones"
-        className="mt-10 inline-block rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black transition-transform hover:scale-105"
-      >
-        Cotizar mi Evento
-      </a>
     </div>
   );
 }

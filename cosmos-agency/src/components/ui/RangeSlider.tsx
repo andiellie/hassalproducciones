@@ -1,37 +1,34 @@
 "use client";
 
+export const BUDGET_BRACKETS = ["0-5,000", "10,000", "20,000", "30,000", "40,000", "+ de 40,000"];
+
 interface RangeSliderProps {
-  min?: number;
-  max?: number;
-  step?: number;
   value: number;
-  onChange: (value: number) => void;
-  formatLabel?: (value: number) => string;
+  onChange: (index: number) => void;
 }
 
-export default function RangeSlider({
-  min = 0,
-  max = 40000,
-  step = 1000,
-  value,
-  onChange,
-  formatLabel = (v) => `$${v.toLocaleString("es-MX")}${v >= max ? "+" : ""}`,
-}: RangeSliderProps) {
+export default function RangeSlider({ value, onChange }: RangeSliderProps) {
   return (
     <div className="w-full">
       <div className="mb-2 flex justify-between text-sm text-white">
-        <span>Presupuesto</span>
-        <span className="font-medium text-[#d4ff00]">{formatLabel(value)}</span>
+        <span>Presupuesto (MXN)</span>
+        <span className="font-medium text-[#d4ff00]">${BUDGET_BRACKETS[value]}</span>
       </div>
       <input
         type="range"
-        min={min}
-        max={max}
-        step={step}
+        min={0}
+        max={BUDGET_BRACKETS.length - 1}
+        step={1}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-800 accent-[#d4ff00]"
+        className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-[#d4ff00]"
       />
+      <div className="mt-2 flex justify-between text-xs text-white/50">
+        {BUDGET_BRACKETS.map((label) => (
+          <span key={label}>{label}</span>
+        ))}
+      </div>
+      <p className="mt-3 text-xs text-white/60">Opcional pero recomendable.</p>
     </div>
   );
 }

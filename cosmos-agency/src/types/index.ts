@@ -1,8 +1,13 @@
 export interface QuoteFormData {
   name: string;
+  companyType: string;
   email: string;
-  phone: string;
-  service: string;
-  budget: number;
-  message: string;
+  whatsapp: string;
+  serviceType: string;
+  estimatedDate: string;
+  description: string;
+  budgetIndex: number;
+  references: string;
+  dontWant: string;
+  contactMethods: string[];
 }

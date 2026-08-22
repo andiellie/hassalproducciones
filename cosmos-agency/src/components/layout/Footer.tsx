@@ -51,9 +51,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-6xl border-t border-white/15 pt-6 text-center">
-        <p>© {new Date().getFullYear()} Cosmos. Todos los derechos reservados.</p>
-        <p className="mt-2">
+      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center gap-2 border-t border-white/15 pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
+        <p>
+          © {new Date().getFullYear()} COSMOSAGENCYMX. Todos los derechos reservados.
+          <span className="mx-3">·</span>
           <Link
             href="/terminos-y-condiciones"
             className="text-white underline underline-offset-2 hover:text-white"
@@ -61,7 +62,7 @@ export default function Footer() {
             Términos y Condiciones
           </Link>
         </p>
-        <p className="mt-2">
+        <p>
           Website hecho por{" "}
           <a
             href="https://andiesgn.com"
