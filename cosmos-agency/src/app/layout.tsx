@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import { Inclusive_Sans } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StarfieldBackground from "@/components/ui/StarfieldBackground";
+import StarfieldFadeOverlay from "@/components/ui/StarfieldFadeOverlay";
+import GalaxyBackdrop from "@/components/ui/GalaxyBackdrop";
+import Preloader from "@/components/ui/Preloader";
 
-const inclusiveSans = Inclusive_Sans({
-  variable: "--font-inclusive-sans",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
 });
 
@@ -23,11 +26,14 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${inclusiveSans.variable} h-full antialiased`}
+      className={`${archivo.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden bg-[#030712] text-white">
+      <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden bg-[#000000] text-white">
+        <Preloader />
         <StarfieldBackground />
+        <StarfieldFadeOverlay />
         <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col">
+          <GalaxyBackdrop />
           <Navbar />
           <main className="min-w-0 flex-1">{children}</main>
           <Footer />

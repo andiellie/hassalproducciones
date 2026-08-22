@@ -36,6 +36,7 @@ export default function Home() {
     <>
       <Hero />
       <AboutSection />
+      <div id="stars-fade-trigger" />
       <StepsSection />
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 pb-16">
         <motion.p
@@ -43,7 +44,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-2xl font-medium text-slate-200 sm:text-3xl"
+          className="text-2xl font-medium text-white sm:text-3xl"
         >
           ¿Tienes un evento en mente?
         </motion.p>

@@ -9,10 +9,12 @@ interface ServiceAccordionProps {
   title: string;
   children: ReactNode;
   fullscreen?: boolean;
+  showToggleIcon?: boolean;
+  defaultOpen?: boolean;
 }
 
-export default function ServiceAccordion({ title, children, fullscreen = false }: ServiceAccordionProps) {
-  const [open, setOpen] = useState(false);
+export default function ServiceAccordion({ title, children, fullscreen = false, showToggleIcon = true, defaultOpen = false }: ServiceAccordionProps) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
     <section className="mx-auto max-w-4xl px-6 py-16">
@@ -23,11 +25,13 @@ export default function ServiceAccordion({ title, children, fullscreen = false }
         className="flex w-full items-center justify-between text-left"
       >
         <h2 className="font-heading text-2xl font-medium sm:text-3xl">{title}</h2>
-        <MorphIcon
-          icon={open && !fullscreen ? X : Plus}
-          size={28}
-          className="shrink-0 text-[#d4ff00]"
-        />
+        {showToggleIcon && (
+          <MorphIcon
+            icon={open && !fullscreen ? X : Plus}
+            size={28}
+            className="shrink-0 text-[#d4ff00]"
+          />
+        )}
       </button>
 
       {fullscreen ? (
@@ -38,7 +42,7 @@ export default function ServiceAccordion({ title, children, fullscreen = false }
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="fixed inset-0 z-50 bg-[#030712]"
+              className="fixed inset-0 z-50 bg-[#000000]"
             >
               <button
                 type="button"

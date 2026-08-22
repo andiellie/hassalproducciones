@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SaturnIcon from "@/components/ui/SaturnIcon";
 
 const exploreLinks = [
   { href: "/", label: "Inicio" },
@@ -9,23 +10,30 @@ const exploreLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800/60 bg-[#030712] px-6 py-16 text-sm text-slate-500">
+    <footer className="border-t border-white/15 bg-[#000000] px-6 py-16 text-sm text-white">
       <div className="mx-auto grid max-w-6xl gap-12 sm:grid-cols-3">
         <div>
-          <h3 className="font-heading text-lg font-[650] uppercase tracking-tight text-white">COSMOS</h3>
-          <p className="mt-3 text-slate-400">Fotografía y video para eventos.</p>
+          <div className="flex items-center gap-2">
+            <SaturnIcon size={20} />
+            <h3 className="font-sans text-lg">
+              <span className="text-white">COSMOS</span>
+              <span className="text-[#d4ff00]">AGENCY</span>
+              <span className="text-white">MX</span>
+            </h3>
+          </div>
+          <p className="mt-3 text-white">Fotografía y video para eventos.</p>
           <p className="mt-2">Capturamos la escencia de tus eventos.</p>
         </div>
 
         <div>
           <h4 className="font-heading text-sm font-medium uppercase tracking-wide text-white">Explora</h4>
-          <ul className="mt-3 flex flex-wrap gap-x-2 gap-y-1 text-slate-400">
+          <ul className="mt-3 flex flex-wrap gap-x-2 gap-y-1 text-white">
             {exploreLinks.map((link, i) => (
               <li key={link.href} className="flex items-center gap-2">
                 <Link href={link.href} className="transition-colors hover:text-white">
                   {link.label}
                 </Link>
-                {i < exploreLinks.length - 1 && <span className="text-slate-700">·</span>}
+                {i < exploreLinks.length - 1 && <span className="text-white">·</span>}
               </li>
             ))}
           </ul>
@@ -33,7 +41,7 @@ export default function Footer() {
 
         <div>
           <h4 className="font-heading text-sm font-medium uppercase tracking-wide text-white">Contacto</h4>
-          <p className="mt-3 text-slate-400">Hablemos de tu próximo evento.</p>
+          <p className="mt-3 text-white">Hablemos de tu próximo evento.</p>
           <Link
             href="/cotizaciones"
             className="mt-2 inline-flex items-center gap-1 text-[#d4ff00] transition-colors hover:text-[#e5ff66]"
@@ -43,15 +51,23 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-6xl border-t border-slate-800/60 pt-6 text-center">
+      <div className="mx-auto mt-12 max-w-6xl border-t border-white/15 pt-6 text-center">
         <p>© {new Date().getFullYear()} Cosmos. Todos los derechos reservados.</p>
+        <p className="mt-2">
+          <Link
+            href="/terminos-y-condiciones"
+            className="text-white underline underline-offset-2 hover:text-white"
+          >
+            Términos y Condiciones
+          </Link>
+        </p>
         <p className="mt-2">
           Website hecho por{" "}
           <a
             href="https://andiesgn.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 underline underline-offset-2 hover:text-slate-300"
+            className="text-white underline underline-offset-2 hover:text-white"
           >
             Andiesgn
           </a>

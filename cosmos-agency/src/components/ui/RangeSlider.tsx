@@ -19,7 +19,7 @@ export default function RangeSlider({
 }: RangeSliderProps) {
   return (
     <div className="w-full">
-      <div className="mb-2 flex justify-between text-sm text-slate-400">
+      <div className="mb-2 flex justify-between text-sm text-white">
         <span>Presupuesto</span>
         <span className="font-medium text-[#d4ff00]">{formatLabel(value)}</span>
       </div>

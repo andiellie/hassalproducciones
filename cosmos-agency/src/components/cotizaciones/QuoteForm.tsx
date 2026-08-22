@@ -34,7 +34,7 @@ export default function QuoteForm() {
           <CheckCircle2 className="h-8 w-8 text-[#d4ff00]" />
         </div>
         <h2 className="font-heading mt-6 text-2xl font-medium">¡Listo! Recibimos tu proyecto.</h2>
-        <p className="mt-2 max-w-md text-slate-400">
+        <p className="mt-2 max-w-md text-white">
           Te contactaremos pronto a {data.email || "tu correo"} para dar el siguiente paso.
         </p>
       </motion.div>
@@ -47,8 +47,8 @@ export default function QuoteForm() {
         {steps.map((label, i) => (
           <div key={label} className="flex-1">
             <div
-              className={`h-1 rounded-full transition-colors ${
-                i <= step ? "bg-[#d4ff00]" : "bg-slate-800"
+              className={`h-1 rounded-full transition-colors backdrop-blur-xl ${
+                i <= step ? "bg-[#d4ff00]" : "bg-white/5"
               }`}
             />
           </div>
@@ -70,21 +70,21 @@ export default function QuoteForm() {
               placeholder="Nombre"
               value={data.name}
               onChange={(e) => setData({ ...data, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm outline-none focus:border-[#d4ff00]"
+              className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-xl placeholder:text-white/50 focus:border-[#d4ff00]"
             />
             <input
               type="email"
               placeholder="Email"
               value={data.email}
               onChange={(e) => setData({ ...data, email: e.target.value })}
-              className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm outline-none focus:border-[#d4ff00]"
+              className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-xl placeholder:text-white/50 focus:border-[#d4ff00]"
             />
             <input
               type="tel"
               placeholder="Teléfono"
               value={data.phone}
               onChange={(e) => setData({ ...data, phone: e.target.value })}
-              className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm outline-none focus:border-[#d4ff00]"
+              className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-xl placeholder:text-white/50 focus:border-[#d4ff00]"
             />
           </div>
         )}
@@ -96,7 +96,7 @@ export default function QuoteForm() {
               placeholder="¿Qué servicio necesitas?"
               value={data.service}
               onChange={(e) => setData({ ...data, service: e.target.value })}
-              className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm outline-none focus:border-[#d4ff00]"
+              className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-xl placeholder:text-white/50 focus:border-[#d4ff00]"
             />
           </div>
         )}
@@ -117,7 +117,7 @@ export default function QuoteForm() {
               value={data.message}
               onChange={(e) => setData({ ...data, message: e.target.value })}
               rows={5}
-              className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm outline-none focus:border-[#d4ff00]"
+              className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-xl placeholder:text-white/50 focus:border-[#d4ff00]"
             />
           </div>
         )}
@@ -128,7 +128,7 @@ export default function QuoteForm() {
           type="button"
           disabled={step === 0}
           onClick={() => setStep((s) => Math.max(0, s - 1))}
-          className="rounded-lg border border-slate-800 px-5 py-2.5 text-sm text-slate-300 disabled:opacity-40"
+          className="rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-sm text-white backdrop-blur-xl disabled:opacity-40"
         >
           Atrás
         </button>

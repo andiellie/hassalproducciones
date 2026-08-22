@@ -3,7 +3,7 @@ export const brand = {
 } as const;
 
 export const colors = {
-  background: "#030712",
+  background: "#000000",
   accentLime: "#d4ff00",
   starGlow: "#e0eeff",
   text: {
@@ -15,6 +15,19 @@ export const colors = {
   border: {
     default: "#1e293b",
     subtle: "rgba(30,41,59,0.6)",
+  },
+  planet: {
+    ring: "#d4ff00",
+    surfaceGradient: "radial-gradient(circle at 35% 30%, #ffffff, #d9dee6 55%, #aab0bb 100%)",
+  },
+} as const;
+
+// Icono de marca: planeta con anillo (Saturno). Componente: src/components/ui/SaturnIcon.tsx
+export const icons = {
+  saturn: {
+    component: "SaturnIcon",
+    path: "@/components/ui/SaturnIcon",
+    usage: "Navbar, marca visual (logo)",
   },
 } as const;
 

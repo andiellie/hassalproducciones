@@ -3,13 +3,42 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 
-const DEFAULT_ITEMS = [
+interface GalleryItem {
+  image: string;
+  label: string;
+  link?: string;
+  alt?: string;
+}
+
+const DEFAULT_ITEMS: GalleryItem[] = [
   { image: 'https://picsum.photos/id/1015/900/1200', label: 'Canyon', link: '#' },
   { image: 'https://picsum.photos/id/1018/900/1200', label: 'Ridgeline', link: '#' },
   { image: 'https://picsum.photos/id/1039/900/1200', label: 'Falls', link: '#' },
   { image: 'https://picsum.photos/id/1043/900/1200', label: 'Harbour', link: '#' },
   { image: 'https://picsum.photos/id/1044/900/1200', label: 'Skyline', link: '#' }
 ];
+
+interface AccordionGalleryProps {
+  items?: GalleryItem[];
+  defaultIndex?: number;
+  accentColor?: string;
+  overlayColor?: string;
+  textColor?: string;
+  height?: number;
+  gap?: number;
+  radius?: number;
+  expandRatio?: number;
+  orientation?: 'horizontal' | 'vertical';
+  duration?: number;
+  ease?: string;
+  parallax?: number;
+  tilt?: number;
+  stagger?: number;
+  trigger?: 'hover' | 'click';
+  showLabels?: boolean;
+  grayscale?: boolean;
+  className?: string;
+}
 
 const AccordionGallery = ({
   items = DEFAULT_ITEMS,
@@ -31,13 +60,13 @@ const AccordionGallery = ({
   showLabels = true,
   grayscale = true,
   className = ''
-}) => {
-  const rootRef = useRef(null);
-  const panelRefs = useRef([]);
-  const mediaRefs = useRef([]);
-  const barRefs = useRef([]);
-  const textRefs = useRef([]);
-  const tlRef = useRef(null);
+}: AccordionGalleryProps) => {
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const panelRefs = useRef<(HTMLElement | null)[]>([]);
+  const mediaRefs = useRef<(HTMLElement | null)[]>([]);
+  const barRefs = useRef<(HTMLElement | null)[]>([]);
+  const textRefs = useRef<(HTMLElement | null)[]>([]);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
   const firstRunRef = useRef(true);
   const mediaSizeRef = useRef(320);
 
@@ -53,7 +82,7 @@ const AccordionGallery = ({
   const overlayBg = `linear-gradient(180deg, transparent 45%, color-mix(in srgb, ${overlayColor} 78%, transparent) 100%), color-mix(in srgb, ${overlayColor} calc(var(--ag-dim, 0.35) * 100%), transparent)`;
 
   const applyLayout = useCallback(
-    animate => {
+    (animate: boolean) => {
       const panels = panelRefs.current;
       if (!panels.length) return;
 
@@ -156,18 +185,18 @@ const AccordionGallery = ({
     []
   );
 
-  const handleEnter = i => {
+  const handleEnter = (i: number) => {
     if (trigger === 'hover') setActive(i);
   };
 
-  const handleClick = (i, e) => {
+  const handleClick = (i: number, e: React.MouseEvent) => {
     if (i !== active) {
       e.preventDefault();
       setActive(i);
     }
   };
 
-  const handleKeyDown = (i, e) => {
+  const handleKeyDown = (i: number, e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
       setActive((i + 1) % count);
@@ -191,14 +220,16 @@ const AccordionGallery = ({
         return (
           <Tag
             key={i}
-            ref={el => (panelRefs.current[i] = el)}
+            ref={(el: HTMLElement | null) => {
+              panelRefs.current[i] = el;
+            }}
             className="group relative block min-w-0 min-h-0 flex-[1_1_0] cursor-pointer overflow-hidden bg-[#0a0713] no-underline outline-none [transform-style:preserve-3d] [transform-origin:center] [box-shadow:0_10px_30px_-18px_rgba(0,0,0,0.8)] focus-visible:[box-shadow:0_0_0_2px_var(--ag-accent),0_10px_30px_-18px_rgba(0,0,0,0.8)] max-[520px]:min-h-[84px] max-[520px]:!transform-none"
-            style={{ borderRadius: `${radius}px`, '--ag-accent': accentColor, willChange: 'flex-grow, transform' }}
+            style={{ borderRadius: `${radius}px`, '--ag-accent': accentColor, willChange: 'flex-grow, transform' } as React.CSSProperties}
             href={item.link || undefined}
-            onClick={e => handleClick(i, e)}
+            onClick={(e: React.MouseEvent) => handleClick(i, e)}
             onMouseEnter={() => handleEnter(i)}
             onFocus={() => setActive(i)}
-            onKeyDown={e => handleKeyDown(i, e)}
+            onKeyDown={(e: React.KeyboardEvent) => handleKeyDown(i, e)}
             role="listitem"
             tabIndex={0}
             aria-current={isActive ? 'true' : undefined}
@@ -206,7 +237,9 @@ const AccordionGallery = ({
           >
             <span className="absolute inset-0 overflow-hidden [border-radius:inherit]">
               <span
-                ref={el => (mediaRefs.current[i] = el)}
+                ref={(el: HTMLElement | null) => {
+                  mediaRefs.current[i] = el;
+                }}
                 className="absolute top-1/2 left-1/2 [filter:grayscale(var(--ag-gray,1))]"
                 style={{
                   width: vertical ? '100%' : 'var(--ag-media-size, 320px)',
@@ -233,7 +266,9 @@ const AccordionGallery = ({
                 aria-hidden="true"
               >
                 <span
-                  ref={el => (barRefs.current[i] = el)}
+                  ref={(el: HTMLSpanElement | null) => {
+                    barRefs.current[i] = el;
+                  }}
                   className="h-[26px] w-[3px] flex-none rounded-[3px] opacity-0"
                   style={{
                     background: accentColor,
@@ -241,7 +276,9 @@ const AccordionGallery = ({
                   }}
                 />
                 <span
-                  ref={el => (textRefs.current[i] = el)}
+                  ref={(el: HTMLSpanElement | null) => {
+                    textRefs.current[i] = el;
+                  }}
                   className="overflow-hidden text-ellipsis whitespace-nowrap text-[clamp(1rem,1.4vw,1.4rem)] font-semibold tracking-[0.01em] opacity-0 [text-shadow:0_2px_14px_rgba(0,0,0,0.55)]"
                   style={{ color: textColor }}
                 >

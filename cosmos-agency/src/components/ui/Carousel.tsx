@@ -126,7 +126,7 @@ export default function Carousel({ items, autoplayInterval = 4500, className = "
                   </div>
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <h3 className="font-heading text-lg font-medium text-white">{item.title}</h3>
-                    <p className="mt-1 text-sm text-slate-300">{item.description}</p>
+                    <p className="mt-1 text-sm text-white">{item.description}</p>
                   </div>
                 </div>
               ))}
