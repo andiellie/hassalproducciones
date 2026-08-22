@@ -1,9 +1,5 @@
-import VideoReel from "@/components/servicios/VideoReel";
+import { redirect } from "next/navigation";
 
 export default function VideoPage() {
-  return (
-    <div>
-      <VideoReel />
-    </div>
-  );
+  redirect("/servicios?tab=video");
 }

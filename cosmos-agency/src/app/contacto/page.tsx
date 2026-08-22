@@ -1,7 +1,5 @@
-'use client';
-
 import { Mail } from "lucide-react";
-import { motion } from "framer-motion";
+import GalaxyBackdrop from "@/components/ui/GalaxyBackdrop";
 
 function WhatsAppIcon() {
   return (
@@ -11,34 +9,13 @@ function WhatsAppIcon() {
   );
 }
 
-function WaveText({ text }: { text: string }) {
-  return (
-    <span className="inline-block">
-      {text.split("").map((char, i) => (
-        <motion.span
-          key={i}
-          className="inline-block"
-          animate={{ y: [0, -6, 0] }}
-          transition={{
-            duration: 1.6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.04,
-          }}
-        >
-          {char === " " ? " " : char}
-        </motion.span>
-      ))}
-    </span>
-  );
-}
-
 export default function ContactoPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16 text-center">
+    <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
+      <GalaxyBackdrop />
       <h1 className="text-4xl font-bold text-white sm:text-5xl">Contacto</h1>
       <p className="mt-12 text-white">
-        <WaveText text="¿Tienes un proyecto en mente? Escríbenos directamente." />
+        ¿Tienes un proyecto en mente? Escríbenos directamente.
       </p>
       <div className="mt-8 space-y-2 text-white">
         <p>

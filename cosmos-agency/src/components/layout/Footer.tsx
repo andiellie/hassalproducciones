@@ -6,6 +6,7 @@ const exploreLinks = [
   { href: "/servicios", label: "Servicios" },
   { href: "/cotizaciones", label: "Cotizaciones" },
   { href: "/contacto", label: "Contacto" },
+  { href: "/terminos-y-condiciones", label: "Términos y Condiciones" },
 ];
 
 export default function Footer() {
@@ -21,8 +22,7 @@ export default function Footer() {
               <span className="text-white">MX</span>
             </h3>
           </div>
-          <p className="mt-3 text-white">Fotografía y video para eventos.</p>
-          <p className="mt-2">Capturamos la escencia de tus eventos.</p>
+          <p className="mt-3 text-xs text-white/80">...creating &amp; connecting with brands</p>
         </div>
 
         <div>

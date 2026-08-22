@@ -1,9 +1,5 @@
-import PhotoGallery from "@/components/servicios/PhotoGallery";
+import { redirect } from "next/navigation";
 
 export default function FotografiaPage() {
-  return (
-    <div>
-      <PhotoGallery />
-    </div>
-  );
+  redirect("/servicios");
 }
