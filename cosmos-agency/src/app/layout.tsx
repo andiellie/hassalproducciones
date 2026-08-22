@@ -3,8 +3,6 @@ import { Archivo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import StarfieldBackground from "@/components/ui/StarfieldBackground";
-import StarfieldFadeOverlay from "@/components/ui/StarfieldFadeOverlay";
 import GalaxyBackdrop from "@/components/ui/GalaxyBackdrop";
 import Preloader from "@/components/ui/Preloader";
 
@@ -30,8 +28,6 @@ export default function RootLayout({
     >
       <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden bg-[#000000] text-white">
         <Preloader />
-        <StarfieldBackground />
-        <StarfieldFadeOverlay />
         <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col">
           <GalaxyBackdrop />
           <Navbar />

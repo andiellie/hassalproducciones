@@ -36,7 +36,6 @@ export default function Home() {
     <>
       <Hero />
       <AboutSection />
-      <div id="stars-fade-trigger" />
       <StepsSection />
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 pb-16">
         <motion.p

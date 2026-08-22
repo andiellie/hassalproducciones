@@ -10,6 +10,9 @@ export default function Hero() {
       {/* Glow Neón de Fondo (Aura Magenta/Cosmos) */}
       <div className="absolute top-1/4 left-1/2 h-[180px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#d4ff00]/20 to-purple-600/30 blur-[80px] pointer-events-none sm:h-[300px] sm:w-[500px] sm:blur-[120px]" />
 
+      {/* Degradado inferior: el hero se funde a negro */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-black pointer-events-none" />
+
       <div className="relative z-10 flex w-full max-w-4xl min-w-0 flex-col items-center text-center">
 
         <div className="flex w-full max-w-full flex-col items-start mx-auto" style={{ width: "fit-content" }}>
