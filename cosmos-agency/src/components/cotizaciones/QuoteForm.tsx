@@ -147,13 +147,16 @@ export default function QuoteForm() {
 
         {step === 0 && (
           <div className="mt-6 space-y-5">
-            <input
-              type="text"
-              placeholder="Nombre"
-              value={data.name}
-              onChange={(e) => setData({ ...data, name: e.target.value })}
-              className={inputClass}
-            />
+            <div>
+              <label className="mb-2 block text-sm font-medium text-white">Nombre</label>
+              <input
+                type="text"
+                placeholder="Nombre"
+                value={data.name}
+                onChange={(e) => setData({ ...data, name: e.target.value })}
+                className={inputClass}
+              />
+            </div>
 
             <div>
               <p className="mb-2 text-sm font-medium text-white">Tipo de empresa</p>
@@ -167,20 +170,26 @@ export default function QuoteForm() {
             <div>
               <p className="mb-2 text-sm font-medium text-white">Contacto</p>
               <div className="space-y-3">
-                <input
-                  type="email"
-                  placeholder="Correo"
-                  value={data.email}
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
-                  className={inputClass}
-                />
-                <input
-                  type="tel"
-                  placeholder="WhatsApp"
-                  value={data.whatsapp}
-                  onChange={(e) => setData({ ...data, whatsapp: e.target.value })}
-                  className={inputClass}
-                />
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-white">Correo</label>
+                  <input
+                    type="email"
+                    placeholder="Correo"
+                    value={data.email}
+                    onChange={(e) => setData({ ...data, email: e.target.value })}
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-white">WhatsApp</label>
+                  <input
+                    type="tel"
+                    placeholder="WhatsApp"
+                    value={data.whatsapp}
+                    onChange={(e) => setData({ ...data, whatsapp: e.target.value })}
+                    className={inputClass}
+                  />
+                </div>
               </div>
             </div>
           </div>

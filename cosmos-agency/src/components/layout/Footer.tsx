@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SaturnIcon from "@/components/ui/SaturnIcon";
 
 const exploreLinks = [
   { href: "/", label: "Inicio" },
@@ -14,14 +13,12 @@ export default function Footer() {
     <footer className="border-t border-white/15 bg-[#000000] px-6 py-16 text-sm text-white">
       <div className="mx-auto grid max-w-6xl gap-12 sm:grid-cols-3">
         <div>
-          <div className="flex items-center gap-2">
-            <SaturnIcon size={20} />
-            <h3 className="font-sans text-lg">
-              <span className="text-white">COSMOS</span>
-              <span className="text-[#d4ff00]">AGENCY</span>
-              <span className="text-white">MX</span>
-            </h3>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/LOGO/cosmos-agency-logo.png"
+            alt="Cosmos Agency MX"
+            className="h-24 w-auto"
+          />
           <p className="mt-3 text-xs text-white/80">...creating &amp; connecting with brands</p>
         </div>
 

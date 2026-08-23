@@ -6,19 +6,72 @@ import { Play } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import PhotoWall from "@/components/ui/PhotoWall";
 
-const wallPhotos = [
-  { id: 1, label: "Boda L&R", image: "/imagenes/Fotografias/EVENTOS/BODA%20L%26R-142.jpg" },
-  { id: 2, label: "Concierto Live", image: "/imagenes/Fotografias/MUSICA/DSC02065.jpg" },
-  { id: 3, label: "Espacio Arquitectónico", image: "/imagenes/Fotografias/ARQUITECTURA%20Y%20ESPACIOS/DSC05874.jpg" },
-  { id: 4, label: "Branding", image: "/imagenes/Fotografias/MARCAS/Copia%20de%20DSC01152.jpg" },
-  { id: 5, label: "Retrato", image: "/imagenes/Fotografias/RETRATOS/DSC00019.jpg" },
-  { id: 6, label: "Urbano", image: "/imagenes/Fotografias/URBANO/IMG_0167.jpg" },
-  { id: 7, label: "Boda L&R II", image: "/imagenes/Fotografias/EVENTOS/BODA%20L%26R-26.jpg" },
-  { id: 8, label: "Sesión DJ", image: "/imagenes/Fotografias/MUSICA/DSC02067.jpg" },
-  { id: 9, label: "Interior Minimal", image: "/imagenes/Fotografias/ARQUITECTURA%20Y%20ESPACIOS/IMG_0531.jpg" },
-  { id: 10, label: "Producto", image: "/imagenes/Fotografias/MARCAS/Copia%20de%20DSC01185.jpg" },
-  { id: 11, label: "Retrato Editorial", image: "/imagenes/Fotografias/RETRATOS/IMG_3479.jpg" },
-  { id: 12, label: "Ciudad", image: "/imagenes/Fotografias/URBANO/IMG_1003.jpg" },
+function toItems(folder: string, files: string[]) {
+  return files.map((file, i) => ({
+    id: `${folder}-${i}`,
+    label: file,
+    image: `/imagenes/Servicios/fotografia-servicios/${encodeURIComponent(folder)}/${encodeURIComponent(file)}`,
+  }));
+}
+
+const filaGrandeArriba = toItems("FILA GRANDE ARRIBA", [
+  "BODA L&R-3.jpg",
+  "DSC02117.jpg",
+  "DSC02175.jpg",
+  "DSC02292.jpg",
+  "DSC05772.jpg",
+  "DSC05787.jpg",
+  "DSC05789.jpg",
+  "DSC06055.jpg",
+  "DSC06301.jpg",
+  "IMG_0591.jpg",
+  "IMG_0747.jpg",
+  "_MG_1087.jpg",
+]);
+
+const filaMedio = toItems("FILA EN MEDIO MEDIANA", [
+  "Copia de _MG_1010 2.jpg",
+  "Copia de _MG_1037.jpg",
+  "DSC02065.jpg",
+  "DSC02067.jpg",
+  "DSC02083.jpg",
+  "IMG_1467.jpg",
+  "IMG_1587.jpg",
+  "IMG_1612.jpg",
+  "IMG_2373.jpg",
+  "IMG_2893.jpg",
+  "IMG_3406.jpg",
+  "IMG_3479.jpg",
+  "IMG_3595.jpg",
+  "IMG_3630.jpg",
+  "IMG_3666.jpg",
+  "IMG_3698.jpg",
+  "IMG_3714.jpg",
+]);
+
+const filaAbajo = toItems("FILA ABAJO MEDIANA", [
+  "Copia de DSC01185.jpg",
+  "Copia de DSC01220.jpg",
+  "Copia de DSC01274.jpg",
+  "DSC05874.jpg",
+  "IMG_0167.jpg",
+  "IMG_0601.jpg",
+  "IMG_1206.jpg",
+  "IMG_1339.jpg",
+  "IMG_3035.jpg",
+  "IMG_3372.jpg",
+  "IMG_4217.JPG",
+  "IMG_6876.jpg",
+  "_MG_0385.jpg",
+  "_MG_4843.jpg",
+  "_MG_4917.jpg",
+  "_MG_4950.jpg",
+]);
+
+const wallRows: [typeof filaGrandeArriba, typeof filaMedio, typeof filaAbajo] = [
+  filaGrandeArriba,
+  filaMedio,
+  filaAbajo,
 ];
 
 type Tab = "foto" | "video";
@@ -61,26 +114,24 @@ export default function PhotoVideoTabs() {
 
       {tab === "foto" ? (
         <div>
-          <PhotoWall items={wallPhotos} />
+          <PhotoWall rows={wallRows} />
           <p className="mx-auto max-w-3xl px-6 pt-6 pb-16 text-white">
             Cobertura fotográfica para bodas, conciertos, marcas y más.
           </p>
         </div>
       ) : (
         <div className="mx-auto max-w-3xl px-6 pb-16">
-          <p className="text-white">
-            Producción audiovisual de alto impacto: spots, reels y contenido de marca.
-          </p>
-
           <button
             type="button"
             aria-label="Reproducir video"
-            className="group mt-6 flex aspect-video w-full items-center justify-center rounded-xl border-2 border-[#d4ff00] bg-slate-900/60 shadow-[0_0_25px_rgba(212,255,0,0.2)]"
+            className="group flex aspect-video w-full items-center justify-center rounded-xl border-2 border-[#d4ff00] bg-slate-900/60 shadow-[0_0_25px_rgba(212,255,0,0.2)]"
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#d4ff00] shadow-[0_0_25px_rgba(212,255,0,0.5)] transition-transform group-hover:scale-110">
               <Play className="h-6 w-6 translate-x-0.5 text-black" fill="currentColor" />
             </div>
           </button>
+
+          <p className="mt-6 text-white">Producción audiovisual profesional.</p>
         </div>
       )}
     </div>

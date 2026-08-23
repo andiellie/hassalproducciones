@@ -2,45 +2,27 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import GalaxyBackdrop from '@/components/ui/GalaxyBackdrop';
 
 export default function Hero() {
   return (
     <div className="relative min-h-screen text-white flex flex-col items-center justify-center px-6 overflow-hidden font-sans">
 
-      <GalaxyBackdrop />
-
       <div className="relative z-10 flex w-full max-w-4xl min-w-0 flex-col items-center text-center">
 
         <div className="flex w-full max-w-full flex-col items-start mx-auto" style={{ width: "fit-content" }}>
-          {/* Título Principal con Degradado e Iluminación */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="leading-[1.15] pb-3"
-            style={{ fontSize: "clamp(2.25rem, 6vw + 1rem, 90px)", ["--hero-size" as string]: "clamp(2.25rem, 6vw + 1rem, 90px)" }}
-          >
-            <span className="whitespace-nowrap">
-              <span className="text-white">COSMOS</span>
-              <span className="text-[#d4ff00]">AGENCY</span>
-              <span className="text-white">MX</span>
-            </span>
-          </motion.h1>
-
-          {/* Subtítulo estilo logo */}
+          {/* Logo principal */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.12 }}
-            className="mt-2 flex w-full min-w-0 flex-col items-start justify-between gap-1 text-white sm:flex-row"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="w-full max-w-[520px]"
           >
-            <span className="text-xs font-bold tracking-wide sm:text-sm">
-              MARKETING &amp; PRODUCCIÓN AUDIOVISUAL
-            </span>
-            <span className="text-xs font-normal text-white sm:text-sm">
-              ...creating &amp; connecting with brands
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/LOGO/cosmos-agency-navbar-wordmark.svg"
+              alt="Cosmos Agency MX"
+              className="h-auto w-full"
+            />
           </motion.div>
         </div>
 
@@ -49,7 +31,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-10 flex w-full items-center justify-center sm:w-auto"
+          className="mt-32 flex w-full items-center justify-center sm:w-auto"
         >
           <motion.a
             href="/servicios"

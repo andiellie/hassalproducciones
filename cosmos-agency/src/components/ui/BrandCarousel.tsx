@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 interface Logo {
   src: string;
@@ -17,11 +16,7 @@ export default function BrandCarousel({ logos }: BrandCarouselProps) {
 
   return (
     <div className="relative mx-auto max-w-6xl overflow-hidden px-6 py-16 [-webkit-mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)] [mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
-      <motion.div
-        className="flex w-max items-center gap-8 sm:gap-12 md:gap-16"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-      >
+      <div className="cosmos-marquee-track flex w-max items-center gap-8 sm:gap-12 md:gap-16">
         {track.map((logo, i) => (
           <div
             key={`${logo.src}-${i}`}
@@ -36,7 +31,7 @@ export default function BrandCarousel({ logos }: BrandCarouselProps) {
             />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

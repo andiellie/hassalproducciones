@@ -10,14 +10,8 @@ export interface PhotoWallItem {
 }
 
 interface PhotoWallProps {
-  items: PhotoWallItem[];
+  rows: [PhotoWallItem[], PhotoWallItem[], PhotoWallItem[]];
   className?: string;
-}
-
-function splitRows(items: PhotoWallItem[], rowCount: number) {
-  const rows: PhotoWallItem[][] = Array.from({ length: rowCount }, () => []);
-  items.forEach((item, i) => rows[i % rowCount].push(item));
-  return rows;
 }
 
 function WallRow({
@@ -34,7 +28,7 @@ function WallRow({
   const track = [...items, ...items];
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden [-webkit-mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)] [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]">
       <motion.div
         className="flex w-max gap-4"
         animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
@@ -62,14 +56,14 @@ function WallRow({
   );
 }
 
-export default function PhotoWall({ items, className = "" }: PhotoWallProps) {
-  const rows = splitRows(items, 3);
+export default function PhotoWall({ rows, className = "" }: PhotoWallProps) {
   const directions: Array<"left" | "right"> = ["left", "right", "left"];
+  const durations = [55, 135, 135];
 
   return (
-    <div className={`flex flex-col gap-4 px-6 ${className}`}>
+    <div className={`flex flex-col gap-4 px-4 sm:px-6 lg:px-[64px] ${className}`}>
       {rows.map((row, i) => (
-        <WallRow key={i} items={row} direction={directions[i]} duration={30} large={i === 2} />
+        <WallRow key={i} items={row} direction={directions[i]} duration={durations[i]} large={i === 0} />
       ))}
     </div>
   );

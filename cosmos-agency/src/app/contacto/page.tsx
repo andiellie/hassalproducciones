@@ -1,5 +1,4 @@
 import { Mail } from "lucide-react";
-import GalaxyBackdrop from "@/components/ui/GalaxyBackdrop";
 
 function WhatsAppIcon() {
   return (
@@ -12,7 +11,6 @@ function WhatsAppIcon() {
 export default function ContactoPage() {
   return (
     <div className="relative">
-      <GalaxyBackdrop />
       <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
         <h1 className="text-4xl font-bold text-white sm:text-5xl">Contacto</h1>
         <p className="mt-12 text-white">

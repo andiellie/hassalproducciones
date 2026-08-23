@@ -22,6 +22,29 @@
   }
 }
 
+@keyframes cosmos-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.cosmos-marquee-track {
+  animation: cosmos-marquee 55s linear infinite;
+}
+
+.cosmos-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+  .cosmos-marquee-track {
+    animation-duration: 18s;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

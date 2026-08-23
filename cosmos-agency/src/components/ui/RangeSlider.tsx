@@ -23,12 +23,12 @@ export default function RangeSlider({ value, onChange }: RangeSliderProps) {
         onChange={(e) => onChange(Number(e.target.value))}
         className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-[#d4ff00]"
       />
-      <div className="mt-2 flex justify-between text-xs text-white/50">
+      <div className="mt-2 flex justify-between text-xs text-white/90">
         {BUDGET_BRACKETS.map((label) => (
           <span key={label}>{label}</span>
         ))}
       </div>
-      <p className="mt-3 text-xs text-white/60">Opcional pero recomendable.</p>
+      <p className="mt-3 text-xs text-white/90">Opcional pero recomendable.</p>
     </div>
   );
 }
