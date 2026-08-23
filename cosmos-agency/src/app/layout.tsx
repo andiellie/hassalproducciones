@@ -12,7 +12,7 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: "Cosmos Agency",
-  description: "Diseño, producción audiovisual y experiencias digitales.",
+  description: "Producción audiovisual",
 };
 
 export default function RootLayout({
@@ -21,10 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="es"
-      className={`${archivo.variable} h-full antialiased`}
-    >
+    <html lang="es" className={`${archivo.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden bg-[#000000] text-white">
         <Preloader />
         <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col">
