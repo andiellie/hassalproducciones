@@ -280,7 +280,26 @@ export default function Galaxy({
     });
 
     const mesh = new Mesh(gl, { geometry, program });
-    let animateId: number;
+    let animateId: number | null = null;
+    let isVisible = true;
+    let isIntersecting = true;
+
+    function shouldRun() {
+      return isVisible && isIntersecting;
+    }
+
+    function startLoop() {
+      if (animateId === null) {
+        animateId = requestAnimationFrame(update);
+      }
+    }
+
+    function stopLoop() {
+      if (animateId !== null) {
+        cancelAnimationFrame(animateId);
+        animateId = null;
+      }
+    }
 
     function update(t: number) {
       animateId = requestAnimationFrame(update);
@@ -301,8 +320,31 @@ export default function Galaxy({
 
       renderer.render({ scene: mesh });
     }
-    animateId = requestAnimationFrame(update);
+    startLoop();
     ctn.appendChild(gl.canvas);
+
+    function handleVisibilityChange() {
+      isVisible = document.visibilityState === 'visible';
+      if (shouldRun()) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = entry.isIntersecting;
+        if (shouldRun()) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(ctn);
 
     function handleMouseMove(e: MouseEvent) {
       const rect = ctn.getBoundingClientRect();
@@ -322,7 +364,9 @@ export default function Galaxy({
     }
 
     return () => {
-      cancelAnimationFrame(animateId);
+      stopLoop();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      intersectionObserver.disconnect();
       window.removeEventListener('resize', resize);
       if (mouseInteraction) {
         ctn.removeEventListener('mousemove', handleMouseMove);

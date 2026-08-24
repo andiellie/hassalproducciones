@@ -10,7 +10,7 @@ function EclipseRing() {
     <motion.img
       src="/LOGO/cosmos-agency-ring.svg"
       alt=""
-      className="h-[42vmin] w-[42vmin] object-contain"
+      className="mt-[18vh] h-[42vmin] w-[42vmin] object-contain"
       animate={{ scale: [1, 1.08, 1], opacity: [0.85, 1, 0.85] }}
       transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
     />
