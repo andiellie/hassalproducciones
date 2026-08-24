@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react";
+import Link from "next/link";
 
 function WhatsAppIcon() {
   return (
@@ -38,12 +39,12 @@ export default function ContactoPage() {
             </a>
           </p>
         </div>
-        <a
+        <Link
           href="/cotizaciones"
           className="mt-10 inline-block rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black transition-transform hover:scale-105"
         >
           Cotizar mi Evento
-        </a>
+        </Link>
       </div>
     </div>
   );

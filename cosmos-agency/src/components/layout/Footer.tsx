@@ -17,7 +17,7 @@ export default function Footer() {
           <img
             src="/LOGO/cosmos-agency-logo.png"
             alt="Cosmos Agency MX"
-            className="h-24 w-auto"
+            className="h-16 w-auto sm:h-24"
           />
           <p className="mt-3 text-xs text-white/80">...creating &amp; connecting with brands</p>
         </div>

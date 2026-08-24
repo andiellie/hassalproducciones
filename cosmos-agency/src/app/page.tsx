@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
 import StepsSection from "@/components/home/StepsSection";
@@ -50,12 +51,12 @@ export default function Home() {
           >
             ¿Tienes un evento en mente?
           </motion.p>
-          <a
+          <Link
             href="/cotizaciones"
             className="inline-flex items-center justify-center rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black shadow-[0_0_25px_rgba(212,255,0,0.3)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(212,255,0,0.5)]"
           >
             Cotizar mi Evento
-          </a>
+          </Link>
         </div>
         <div className="mx-auto max-w-6xl px-6 py-16">
           <AccordionGallery items={eventCategories} />

@@ -31,7 +31,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-4 z-50 px-4 sm:px-6 lg:px-[64px]">
+    <header className="sticky top-4 z-50 px-6">
       <motion.nav
         layout
         animate={{ borderRadius: mobileOpen ? 32 : 999 }}
@@ -73,7 +73,7 @@ export default function Navbar() {
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
-            className="flex h-5 w-5 items-center justify-center lg:hidden"
+            className="-mr-2 flex h-10 w-10 items-center justify-center lg:hidden"
           >
             <MorphIcon icon={mobileOpen ? X : Menu} size={20} className="text-white" />
           </button>

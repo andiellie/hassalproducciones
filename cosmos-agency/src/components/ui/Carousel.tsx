@@ -141,7 +141,7 @@ export default function Carousel({ items, autoplayInterval = 4500, className = "
             type="button"
             onClick={prev}
             aria-label="Anterior"
-            className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-900/70 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/carousel:opacity-100 hover:bg-slate-800/90"
+            className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-900/70 text-white opacity-100 backdrop-blur-md transition-opacity duration-300 sm:opacity-0 sm:group-hover/carousel:opacity-100 hover:bg-slate-800/90"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -149,7 +149,7 @@ export default function Carousel({ items, autoplayInterval = 4500, className = "
             type="button"
             onClick={next}
             aria-label="Siguiente"
-            className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-900/70 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/carousel:opacity-100 hover:bg-slate-800/90"
+            className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-900/70 text-white opacity-100 backdrop-blur-md transition-opacity duration-300 sm:opacity-0 sm:group-hover/carousel:opacity-100 hover:bg-slate-800/90"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

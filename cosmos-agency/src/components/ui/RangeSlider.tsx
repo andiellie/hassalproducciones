@@ -24,8 +24,10 @@ export default function RangeSlider({ value, onChange }: RangeSliderProps) {
         className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-[#d4ff00]"
       />
       <div className="mt-2 flex justify-between text-xs text-white/90">
-        {BUDGET_BRACKETS.map((label) => (
-          <span key={label}>{label}</span>
+        {BUDGET_BRACKETS.map((label, i) => (
+          <span key={label} className={i !== 0 && i !== BUDGET_BRACKETS.length - 1 ? "hidden sm:inline" : undefined}>
+            {label}
+          </span>
         ))}
       </div>
       <p className="mt-3 text-xs text-white/90">Opcional pero recomendable.</p>
