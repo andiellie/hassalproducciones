@@ -15,11 +15,10 @@ export default function Footer() {
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/LOGO/cosmos-agency-logo.png"
+            src="/LOGO/cosmos-agency-navbar-wordmark.svg"
             alt="Cosmos Agency MX"
             className="h-16 w-auto sm:h-24"
           />
-          <p className="mt-3 text-xs text-white/80">...creating &amp; connecting with brands</p>
         </div>
 
         <div>
@@ -48,28 +47,23 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center gap-2 border-t border-white/15 pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
-        <p>
-          © {new Date().getFullYear()} COSMOSAGENCYMX. Todos los derechos reservados.
-          <span className="mx-3">·</span>
-          <Link
-            href="/terminos-y-condiciones"
-            className="text-white underline underline-offset-2 hover:text-white"
-          >
-            Términos y Condiciones
-          </Link>
-        </p>
-        <p>
-          Website hecho por{" "}
-          <a
-            href="https://andiesgn.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white underline underline-offset-2 hover:text-white"
-          >
-            Andiesgn
-          </a>
-        </p>
+      <div className="-mx-6 mt-12 border-t border-white/15">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-6 pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
+          <p>
+            © {new Date().getFullYear()} COSMOSAGENCYMX. Todos los derechos reservados.
+          </p>
+          <p>
+            Website hecho por{" "}
+            <a
+              href="https://andiesgn.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white underline underline-offset-2 hover:text-white"
+            >
+              Andiesgn
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

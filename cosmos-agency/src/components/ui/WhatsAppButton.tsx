@@ -1,7 +1,7 @@
 export default function WhatsAppButton() {
   return (
     <a
-      href="https://wa.link/utfco7"
+      href="https://wa.me/5215640508888?text=Hola%2C%20me%20interesa%20saber%20de%20Cosmos%20Agency"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"

@@ -44,7 +44,7 @@ export default function Navbar() {
             <img
               src="/LOGO/cosmos-agency-navbar-wordmark.svg"
               alt="Cosmos Agency MX"
-              className="h-40 w-auto"
+              className="h-[44px] w-auto sm:h-[52px] lg:h-[44px]"
             />
           </Link>
 

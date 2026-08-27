@@ -29,13 +29,13 @@ export default function ContactoPage() {
           </p>
           <p>
             <a
-              href="https://wa.link/utfco7"
+              href="https://wa.me/5215640508888?text=Hola%2C%20me%20interesa%20saber%20de%20Cosmos%20Agency"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
             >
               <WhatsAppIcon />
-              +52 1 55 6245 3891
+              +52 1 56 4050 8888
             </a>
           </p>
         </div>
