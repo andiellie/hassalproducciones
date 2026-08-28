@@ -4,6 +4,8 @@ import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MorphIcon } from "morphicons/react";
 import { Plus, X } from "lucide";
+import BrandButton from "@/components/ui/BrandButton";
+import ExactColor from "@/components/ui/ExactColor";
 
 interface ServiceAccordionProps {
   title: string;
@@ -26,11 +28,9 @@ export default function ServiceAccordion({ title, children, fullscreen = false, 
       >
         <h2 className="font-heading text-2xl font-medium sm:text-3xl">{title}</h2>
         {showToggleIcon && (
-          <MorphIcon
-            icon={open && !fullscreen ? X : Plus}
-            size={28}
-            className="shrink-0 text-[#d4ff00]"
-          />
+          <ExactColor className="shrink-0 text-[#d4ff00]">
+            <MorphIcon icon={open && !fullscreen ? X : Plus} size={28} />
+          </ExactColor>
         )}
       </button>
 
@@ -44,14 +44,14 @@ export default function ServiceAccordion({ title, children, fullscreen = false, 
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="fixed inset-0 z-50 bg-[#000000]"
             >
-              <button
+              <BrandButton
                 type="button"
                 onClick={() => setOpen(false)}
-                aria-label="Cerrar y volver a Servicios"
+                ariaLabel="Cerrar y volver a Servicios"
                 className="absolute top-6 right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-900/70 text-[#d4ff00] backdrop-blur-md"
               >
                 <MorphIcon icon={X} size={20} />
-              </button>
+              </BrandButton>
               <div className="h-full w-full">{children}</div>
             </motion.div>
           )}

@@ -1,5 +1,8 @@
+"use client";
+
 import { Mail } from "lucide-react";
-import Link from "next/link";
+import { useLanguage } from "@/lib/language";
+import BrandButton from "@/components/ui/BrandButton";
 
 function WhatsAppIcon() {
   return (
@@ -9,42 +12,54 @@ function WhatsAppIcon() {
   );
 }
 
+const copy = {
+  es: {
+    title: "Contacto",
+    intro: "¿Tienes un proyecto en mente? Escríbenos directamente.",
+    cta: "Cotizar mi Evento",
+  },
+  en: {
+    title: "Contact",
+    intro: "Have a project in mind? Write to us directly.",
+    cta: "Quote My Event",
+  },
+};
+
 export default function ContactoPage() {
+  const { lang } = useLanguage();
+  const t = copy[lang];
+
   return (
     <div className="relative">
       <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
-        <h1 className="text-4xl font-bold text-white sm:text-5xl">Contacto</h1>
-        <p className="mt-12 text-white">
-          ¿Tienes un proyecto en mente? Escríbenos directamente.
-        </p>
+        <h1 className="text-4xl font-bold text-white sm:text-5xl">{t.title}</h1>
+        <p className="mt-12 text-white">{t.intro}</p>
         <div className="mt-8 space-y-2 text-white">
           <p>
-            <a
+            <BrandButton
               href="mailto:ahanostyle@gmail.com"
               className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
             >
               <Mail className="h-4 w-4" />
               ahanostyle@gmail.com
-            </a>
+            </BrandButton>
           </p>
           <p>
-            <a
+            <BrandButton
               href="https://wa.me/5215640508888?text=Hola%2C%20me%20interesa%20saber%20de%20Cosmos%20Agency"
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
             >
               <WhatsAppIcon />
               +52 1 56 4050 8888
-            </a>
+            </BrandButton>
           </p>
         </div>
-        <Link
+        <BrandButton
           href="/cotizaciones"
           className="mt-10 inline-block rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black transition-transform hover:scale-105"
         >
-          Cotizar mi Evento
-        </Link>
+          {t.cta}
+        </BrandButton>
       </div>
     </div>
   );

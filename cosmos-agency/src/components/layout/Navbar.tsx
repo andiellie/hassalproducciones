@@ -6,11 +6,15 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MorphIcon } from "morphicons/react";
 import { Menu, X } from "lucide";
+import { Sun, Moon } from "lucide-react";
+import { useLanguage } from "@/lib/language";
+import { useTheme } from "@/lib/theme";
+import ExactColor from "@/components/ui/ExactColor";
 
 const links = [
-  { href: "/servicios", label: "Servicios" },
-  { href: "/cotizaciones", label: "Cotizaciones" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/servicios", label: { es: "Servicios", en: "Services" } },
+  { href: "/cotizaciones", label: { es: "Cotizaciones", en: "Quotes" } },
+  { href: "/contacto", label: { es: "Contacto", en: "Contact" } },
 ];
 
 function splitHref(href: string) {
@@ -22,6 +26,9 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hash, setHash] = useState("");
+  const { lang, toggleLang } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
+  const isDay = theme === "light";
 
   useEffect(() => {
     const syncHash = () => setHash(window.location.hash.replace("#", ""));
@@ -42,7 +49,11 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/LOGO/cosmos-agency-navbar-wordmark.svg"
+              src={
+                isDay
+                  ? "/LOGO/SVG/SIN FONDO/POSITIVO/COSMOS AGENCY_LOGO SIN FONDO-03.svg"
+                  : "/LOGO/cosmos-agency-navbar-wordmark.svg"
+              }
               alt="Cosmos Agency MX"
               className="h-[56px] w-auto sm:h-[58px] lg:h-[50px]"
             />
@@ -57,26 +68,73 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setHash(linkHash)}
-                    className={`transition-colors hover:text-white ${
-                      isActive ? "text-[#d4ff00]" : ""
-                    }`}
+                    className="transition-colors hover:text-white"
                   >
-                    {link.label}
+                    {isActive ? (
+                      <ExactColor className="text-[#d4ff00]">{link.label[lang]}</ExactColor>
+                    ) : (
+                      link.label[lang]
+                    )}
                   </Link>
                 </li>
               );
             })}
           </ul>
 
-          <button
-            type="button"
-            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((open) => !open)}
-            className="-mr-2 flex h-10 w-10 items-center justify-center lg:hidden"
-          >
-            <MorphIcon icon={mobileOpen ? X : Menu} size={20} className="text-white" />
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={toggleLang}
+              aria-label="Cambiar idioma / Switch language"
+              className="flex items-center gap-1 text-sm font-medium text-white"
+            >
+              {lang === "es" ? (
+                <ExactColor className="text-[#d4ff00]">ES</ExactColor>
+              ) : (
+                <span className="text-white/50">ES</span>
+              )}
+              <span className="text-white/30">/</span>
+              {lang === "en" ? (
+                <ExactColor className="text-[#d4ff00]">EN</ExactColor>
+              ) : (
+                <span className="text-white/50">EN</span>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={
+                isDay
+                  ? lang === "es" ? "Cambiar a modo noche" : "Switch to night mode"
+                  : lang === "es" ? "Cambiar a modo día" : "Switch to day mode"
+              }
+              className="relative flex h-7 w-14 items-center rounded-full border border-white/15 bg-white/5 px-1 transition-colors"
+            >
+              <motion.span
+                layout
+                transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                className="flex h-5 w-5 items-center justify-center rounded-full bg-[#d4ff00]"
+                style={{ marginLeft: isDay ? "auto" : 0 }}
+              >
+                {isDay ? <Sun className="h-3 w-3 text-black" /> : <Moon className="h-3 w-3 text-black" />}
+              </motion.span>
+            </button>
+
+            <button
+              type="button"
+              aria-label={
+                mobileOpen
+                  ? lang === "es" ? "Cerrar menú" : "Close menu"
+                  : lang === "es" ? "Abrir menú" : "Open menu"
+              }
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((open) => !open)}
+              className="-mr-2 flex h-10 w-10 items-center justify-center lg:hidden"
+            >
+              <MorphIcon icon={mobileOpen ? X : Menu} size={20} className="text-white" />
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
@@ -103,11 +161,13 @@ export default function Navbar() {
                           setHash(linkHash);
                           setMobileOpen(false);
                         }}
-                        className={`block transition-colors hover:text-white ${
-                          isActive ? "text-[#d4ff00]" : ""
-                        }`}
+                        className="block transition-colors hover:text-white"
                       >
-                        {link.label}
+                        {isActive ? (
+                          <ExactColor className="text-[#d4ff00]">{link.label[lang]}</ExactColor>
+                        ) : (
+                          link.label[lang]
+                        )}
                       </Link>
                     </li>
                   );

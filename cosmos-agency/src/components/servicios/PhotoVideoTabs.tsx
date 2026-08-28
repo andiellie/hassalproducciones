@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import PhotoWall from "@/components/ui/PhotoWall";
+import { useLanguage } from "@/lib/language";
+import BrandButton from "@/components/ui/BrandButton";
 
 function toItems(folder: string, files: string[]) {
   return files.map((file, i) => ({
@@ -76,21 +78,37 @@ const wallRows: [typeof filaGrandeArriba, typeof filaMedio, typeof filaAbajo] = 
 
 type Tab = "foto" | "video";
 
-const TABS: { value: Tab; label: string }[] = [
-  { value: "foto", label: "Fotografía" },
-  { value: "video", label: "Video" },
-];
+const copy = {
+  es: {
+    tabs: { foto: "Fotografía", video: "Video" },
+    photoCaption: "Cobertura fotográfica para bodas, conciertos, marcas y más.",
+    videoCaption: "Producción audiovisual profesional.",
+    playAria: "Reproducir video",
+  },
+  en: {
+    tabs: { foto: "Photography", video: "Video" },
+    photoCaption: "Photo coverage for weddings, concerts, brands, and more.",
+    videoCaption: "Professional audiovisual production.",
+    playAria: "Play video",
+  },
+};
 
 export default function PhotoVideoTabs() {
+  const { lang } = useLanguage();
+  const t = copy[lang];
   const searchParams = useSearchParams();
   const initialTab: Tab = searchParams.get("tab") === "video" ? "video" : "foto";
   const [tab, setTab] = useState<Tab>(initialTab);
+  const tabs: { value: Tab; label: string }[] = [
+    { value: "foto", label: t.tabs.foto },
+    { value: "video", label: t.tabs.video },
+  ];
 
   return (
     <div>
       <div className="mx-auto max-w-3xl px-6 pt-8 pb-8">
         <div className="relative inline-flex rounded-full border border-white/15 bg-white/5 p-1 backdrop-blur-xl">
-          {TABS.map(({ value, label }) => (
+          {tabs.map(({ value, label }) => (
             <button
               key={value}
               type="button"
@@ -115,23 +133,21 @@ export default function PhotoVideoTabs() {
       {tab === "foto" ? (
         <div>
           <PhotoWall rows={wallRows} />
-          <p className="mx-auto max-w-3xl px-6 pt-6 pb-16 text-white">
-            Cobertura fotográfica para bodas, conciertos, marcas y más.
-          </p>
+          <p className="mx-auto max-w-3xl px-6 pt-6 pb-16 text-white">{t.photoCaption}</p>
         </div>
       ) : (
         <div className="mx-auto max-w-3xl px-6 pb-16">
-          <button
+          <BrandButton
             type="button"
-            aria-label="Reproducir video"
+            ariaLabel={t.playAria}
             className="group flex aspect-video w-full items-center justify-center rounded-xl border-2 border-[#d4ff00] bg-slate-900/60 shadow-[0_0_25px_rgba(212,255,0,0.2)]"
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#d4ff00] shadow-[0_0_25px_rgba(212,255,0,0.5)] transition-transform group-hover:scale-110">
               <Play className="h-6 w-6 translate-x-0.5 text-black" fill="currentColor" />
             </div>
-          </button>
+          </BrandButton>
 
-          <p className="mt-6 text-white">Producción audiovisual profesional.</p>
+          <p className="mt-6 text-white">{t.videoCaption}</p>
         </div>
       )}
     </div>

@@ -1,17 +1,39 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '@/lib/language';
+import BrandButton from '@/components/ui/BrandButton';
 
-const steps = [
-  { title: "Cuéntanos sobre tu evento", description: "Compártenos la fecha, tipo de evento y lo que necesitas cubrir." },
-  { title: "Definimos la cobertura", description: "Te recomendamos el equipo y la cobertura adecuada para tu evento." },
-  { title: "Cubrimos el evento", description: "Nuestro equipo se encarga de capturar cada momento importante." },
-  { title: "Recibe tu material", description: "Editamos y entregamos tus fotografías y videos listos para disfrutar y compartir." },
-];
+const copy = {
+  es: {
+    title: 'Pasos para ser parte de tu evento',
+    subtitle: 'De la planificación a la entrega, hacemos que todo sea simple.',
+    quote: 'Cotizar',
+    steps: [
+      { title: 'Cuéntanos sobre tu evento', description: 'Compártenos la fecha, tipo de evento y lo que necesitas cubrir.' },
+      { title: 'Definimos la cobertura', description: 'Te recomendamos el equipo y la cobertura adecuada para tu evento.' },
+      { title: 'Cubrimos el evento', description: 'Nuestro equipo se encarga de capturar cada momento importante.' },
+      { title: 'Recibe tu material', description: 'Editamos y entregamos tus fotografías y videos listos para disfrutar y compartir.' },
+    ],
+  },
+  en: {
+    title: 'Steps to be part of your event',
+    subtitle: 'From planning to delivery, we make it simple.',
+    quote: 'Get a quote',
+    steps: [
+      { title: 'Tell us about your event', description: 'Share the date, type of event, and what you need covered.' },
+      { title: 'We define the coverage', description: 'We recommend the right team and coverage for your event.' },
+      { title: 'We cover the event', description: 'Our team captures every important moment.' },
+      { title: 'Get your material', description: 'We edit and deliver your photos and videos ready to enjoy and share.' },
+    ],
+  },
+};
 
 export default function StepsSection() {
+  const { lang } = useLanguage();
+  const t = copy[lang];
+
   return (
     <section className="mx-auto max-w-6xl px-6 py-24">
       <div className="mx-auto max-w-2xl text-left">
@@ -22,7 +44,7 @@ export default function StepsSection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="font-heading mt-2 text-3xl font-medium sm:mt-4 sm:text-4xl"
         >
-          Pasos para ser parte de tu evento
+          {t.title}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 24 }}
@@ -31,11 +53,11 @@ export default function StepsSection() {
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
           className="mt-3 text-lg text-white"
         >
-          De la planificación a la entrega, hacemos que todo sea simple.
+          {t.subtitle}
         </motion.p>
       </div>
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((step, i) => (
+      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4">
+        {t.steps.map((step, i) => (
           <motion.div
             key={step.title}
             initial={{ opacity: 0, y: 40 }}
@@ -47,13 +69,13 @@ export default function StepsSection() {
           >
             <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-[#d4ff00]/10 via-transparent to-transparent" />
             {i === 0 && (
-              <Link
+              <BrandButton
                 href="/cotizaciones"
                 className="absolute top-4 right-4 z-10 flex items-center gap-1 text-xs font-medium text-[#d4ff00] transition-transform hover:translate-x-0.5 hover:-translate-y-0.5"
               >
-                Cotizar
+                {t.quote}
                 <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
+              </BrandButton>
             )}
             <motion.span
               initial={{ scale: 1 }}

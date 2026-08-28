@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import BrandButton from "@/components/ui/BrandButton";
 
 export interface CarouselItem {
   id: string | number;
@@ -155,18 +156,25 @@ export default function Carousel({ items, autoplayInterval = 4500, className = "
           </button>
 
           <div className="mt-6 flex items-center justify-center gap-2">
-            {Array.from({ length: pageCount }).map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => goTo(i)}
-                aria-label={`Ir a la página ${i + 1}`}
-                aria-current={i === page}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === page ? "w-6 bg-[#d4ff00]" : "w-1.5 bg-slate-700 hover:bg-slate-500"
-                }`}
-              />
-            ))}
+            {Array.from({ length: pageCount }).map((_, i) =>
+              i === page ? (
+                <BrandButton
+                  key={i}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  ariaLabel={`Ir a la página ${i + 1}`}
+                  className="h-1.5 w-6 rounded-full bg-[#d4ff00] transition-all duration-300"
+                />
+              ) : (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  aria-label={`Ir a la página ${i + 1}`}
+                  className="h-1.5 w-1.5 rounded-full bg-slate-700 transition-all duration-300 hover:bg-slate-500"
+                />
+              )
+            )}
           </div>
         </>
       )}

@@ -39,10 +39,22 @@
   animation-play-state: paused;
 }
 
-@media (max-width: 640px) {
-  .cosmos-marquee-track {
-    animation-duration: 18s;
-  }
+html.theme-light {
+  background: #fff;
+}
+
+html.theme-light #theme-filter-wrapper {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html.theme-light img,
+html.theme-light video,
+html.theme-light .bg-\[\#d4ff00\] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html.theme-light .bg-\[\#d4ff00\] {
+  color: #10110D;
 }
 
 @theme inline {

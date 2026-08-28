@@ -73,6 +73,15 @@ const AccordionGallery = ({
   const vertical = orientation === 'vertical';
   const count = items.length;
   const [active, setActive] = useState(Math.min(Math.max(defaultIndex, 0), count - 1));
+  const [isNarrow, setIsNarrow] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 520px)');
+    const sync = () => setIsNarrow(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   const prefersReduced =
     typeof window !== 'undefined' && window.matchMedia
@@ -206,38 +215,50 @@ const AccordionGallery = ({
   return (
     <div
       ref={rootRef}
-      className={`flex ${vertical ? 'flex-col' : 'flex-row'} w-full max-w-full [perspective:1400px] max-[520px]:!flex-col max-[520px]:!h-auto max-[520px]:[perspective:none] ${className}`}
-      style={{ gap: `${gap}px`, height: vertical ? `${Math.round(height * 1.6)}px` : `${height}px` }}
+      className={`flex ${vertical ? 'flex-col' : 'flex-row'} w-full max-w-full [perspective:1400px] max-[520px]:!flex-col max-[520px]:[perspective:none] ${className}`}
+      style={{
+        gap: `${gap}px`,
+        height:
+          isNarrow && !vertical
+            ? `${Math.round(84 * ((Math.min(Math.max(expandRatio, 0.2), 0.9) * (count - 1)) / (1 - Math.min(Math.max(expandRatio, 0.2), 0.9)) + count - 1))}px`
+            : vertical
+              ? `${Math.round(height * 1.6)}px`
+              : `${height}px`
+      }}
       role="list"
       aria-label="Image accordion gallery"
     >
       {items.map((item, i) => {
         const isActive = i === active;
-        const Tag = item.link ? 'a' : 'div';
-        return (
-          <Tag
-            key={i}
-            ref={(el: HTMLElement | null) => {
-              panelRefs.current[i] = el;
-            }}
-            className="group relative block min-w-0 min-h-0 flex-[1_1_0] cursor-pointer overflow-hidden bg-[#0a0713] no-underline outline-none [transform-style:preserve-3d] [transform-origin:center] [box-shadow:0_10px_30px_-18px_rgba(0,0,0,0.8)] focus-visible:[box-shadow:0_0_0_2px_var(--ag-accent),0_10px_30px_-18px_rgba(0,0,0,0.8)] max-[520px]:min-h-[84px] max-[520px]:!transform-none"
-            style={{ borderRadius: `${radius}px`, '--ag-accent': accentColor, willChange: 'flex-grow, transform' } as React.CSSProperties}
-            href={item.link || undefined}
-            onClick={() => handleClick(i)}
-            onMouseEnter={() => handleEnter(i)}
-            onFocus={() => setActive(i)}
-            onKeyDown={(e: React.KeyboardEvent) => handleKeyDown(i, e)}
-            role="listitem"
-            tabIndex={0}
-            aria-current={isActive ? 'true' : undefined}
-            aria-label={item.label}
-          >
+        const panelClassName =
+          'group relative block min-w-0 min-h-0 flex-[1_1_0] cursor-pointer overflow-hidden bg-[#0a0713] no-underline outline-none [transform-style:preserve-3d] [transform-origin:center] [box-shadow:0_10px_30px_-18px_rgba(0,0,0,0.8)] focus-visible:[box-shadow:0_0_0_2px_var(--ag-accent),0_10px_30px_-18px_rgba(0,0,0,0.8)] max-[520px]:min-h-[84px] max-[520px]:!transform-none';
+        const panelStyle = {
+          borderRadius: `${radius}px`,
+          '--ag-accent': accentColor,
+          willChange: 'flex-grow, transform'
+        } as React.CSSProperties;
+        const panelRef = (el: HTMLElement | null) => {
+          panelRefs.current[i] = el;
+        };
+        const panelHandlers = {
+          onClick: () => handleClick(i),
+          onMouseEnter: () => handleEnter(i),
+          onFocus: () => setActive(i),
+          onKeyDown: (e: React.KeyboardEvent) => handleKeyDown(i, e),
+          role: 'listitem' as const,
+          tabIndex: 0,
+          'aria-current': isActive ? ('true' as const) : undefined,
+          'aria-label': item.label
+        };
+
+        const children = (
+          <>
             <span className="absolute inset-0 overflow-hidden [border-radius:inherit]">
               <span
                 ref={(el: HTMLElement | null) => {
                   mediaRefs.current[i] = el;
                 }}
-                className="absolute top-1/2 left-1/2 [filter:grayscale(var(--ag-gray,1))]"
+                className="absolute top-1/2 left-1/2 [filter:grayscale(var(--ag-gray,1))] max-[520px]:!h-full max-[520px]:!w-full"
                 style={{
                   width: vertical ? '100%' : 'var(--ag-media-size, 320px)',
                   height: vertical ? 'var(--ag-media-size, 320px)' : '100%',
@@ -283,7 +304,19 @@ const AccordionGallery = ({
                 </span>
               </span>
             )}
-          </Tag>
+          </>
+        );
+
+        return (
+          <div
+            key={i}
+            ref={panelRef as React.Ref<HTMLDivElement>}
+            className={panelClassName}
+            style={panelStyle}
+            {...panelHandlers}
+          >
+            {children}
+          </div>
         );
       })}
     </div>
