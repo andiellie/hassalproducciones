@@ -209,18 +209,6 @@ export default function QuoteForm() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
-      <div className="mb-8 flex items-center gap-2">
-        {t.steps.map((label, i) => (
-          <div key={label} className="flex-1">
-            <div
-              className={`h-1 rounded-full transition-colors backdrop-blur-xl ${
-                i <= step ? "bg-[#d4ff00]" : "bg-white/5"
-              }`}
-            />
-          </div>
-        ))}
-      </div>
-
       <motion.div
         key={step}
         initial={{ opacity: 0, y: 10 }}
@@ -363,15 +351,28 @@ export default function QuoteForm() {
         )}
       </motion.div>
 
-      <div className="mt-8 flex justify-between">
-        <button
-          type="button"
-          disabled={step === 0}
-          onClick={() => setStep((s) => Math.max(0, s - 1))}
-          className="rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-sm text-white backdrop-blur-xl disabled:opacity-40"
-        >
-          {t.back}
-        </button>
+      <div className="mt-8 flex items-center gap-2">
+        {t.steps.map((label, i) => (
+          <div key={label} className="flex-1">
+            <div
+              className={`h-1 rounded-full transition-colors backdrop-blur-xl ${
+                i <= step ? "bg-[#d4ff00]" : "bg-white/5"
+              }`}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className={`mt-4 flex ${step === 0 ? "justify-end" : "justify-between"}`}>
+        {step > 0 && (
+          <button
+            type="button"
+            onClick={() => setStep((s) => Math.max(0, s - 1))}
+            className="rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-sm text-white backdrop-blur-xl"
+          >
+            {t.back}
+          </button>
+        )}
         <motion.button
           type="button"
           whileHover={{ scale: 1.02 }}
