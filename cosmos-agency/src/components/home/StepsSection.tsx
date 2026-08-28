@@ -1,20 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/lib/language';
-import BrandButton from '@/components/ui/BrandButton';
 
 const copy = {
   es: {
-    title: 'Pasos para ser parte de tu evento',
-    subtitle: 'De la planificación a la entrega, hacemos que todo sea simple.',
+    title: 'CONOCE NUESTRO PROCESO DE TRABAJO',
+    subtitle: 'Para llegar a una entrega ideal, partimos desde la preproducción de tu evento, proyecto o idea.',
     quote: 'Cotizar',
     steps: [
-      { title: 'Cuéntanos sobre tu evento', description: 'Compártenos la fecha, tipo de evento y lo que necesitas cubrir.' },
-      { title: 'Definimos la cobertura', description: 'Te recomendamos el equipo y la cobertura adecuada para tu evento.' },
-      { title: 'Cubrimos el evento', description: 'Nuestro equipo se encarga de capturar cada momento importante.' },
-      { title: 'Recibe tu material', description: 'Editamos y entregamos tus fotografías y videos listos para disfrutar y compartir.' },
+      { title: 'CUÉNTANOS TU IDEA', description: 'Llena el formulario de nuestra página web para recibir la información básica de tu proyecto, evento o idea.' },
+      { title: 'ATERRICEMOS EL PROYECTO', description: 'Videollamada de presentación, sesión de preguntas y respuestas y definir contratación, fechas de producción y logística del proyecto, evento o idea.' },
+      { title: 'PRODUCCIÓN DE TU EVENTO', description: 'Pago del anticipo, validación de la pre-producción y entrega de contratos de servicio.' },
+      { title: 'PRODUCCIÓN DE TU EVENTO', description: 'Producción del proyecto, evento o idea y definimos fechas de entrega.' },
     ],
   },
   en: {
@@ -69,13 +69,13 @@ export default function StepsSection() {
           >
             <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-[#d4ff00]/10 via-transparent to-transparent" />
             {i === 0 && (
-              <BrandButton
+              <Link
                 href="/cotizaciones"
                 className="absolute top-4 right-4 z-10 flex items-center gap-1 text-xs font-medium text-[#d4ff00] transition-transform hover:translate-x-0.5 hover:-translate-y-0.5"
               >
                 {t.quote}
                 <ArrowUpRight className="h-3.5 w-3.5" />
-              </BrandButton>
+              </Link>
             )}
             <motion.span
               initial={{ scale: 1 }}

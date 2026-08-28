@@ -1,15 +1,14 @@
 'use client';
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Hero from "@/components/home/Hero";
-import BrandButton from "@/components/ui/BrandButton";
 import AboutSection from "@/components/home/AboutSection";
 import StepsSection from "@/components/home/StepsSection";
 import BrandCarousel from "@/components/ui/BrandCarousel";
 import AccordionGallery from "@/components/ui/AccordionGallery";
 import GalaxyFadeBackdrop from "@/components/ui/GalaxyFadeBackdrop";
 import { useLanguage } from "@/lib/language";
-import { useTheme } from "@/lib/theme";
 
 const eventCategories = [
   {
@@ -40,8 +39,8 @@ const eventCategories = [
 ];
 
 const copy = {
-  es: { question: "¿Tienes un evento en mente?", cta: "Cotizar mi Evento" },
-  en: { question: "Have an event in mind?", cta: "Quote My Event" },
+  es: { question: "¿PIENSAS REALIZAR UN EVENTO MEMORABLE?", cta: "Cotizar mi Evento" },
+  en: { question: "PLANNING A MEMORABLE EVENT?", cta: "Quote My Event" },
 };
 
 const logos = [
@@ -62,7 +61,6 @@ const logos = [
 
 export default function Home() {
   const { lang } = useLanguage();
-  const { theme } = useTheme();
   const t = copy[lang];
   const localizedCategories = eventCategories.map((c) => ({ ...c, label: c.label[lang] }));
 
@@ -70,25 +68,25 @@ export default function Home() {
     <>
       <Hero />
       <div className="relative">
-        {theme === "dark" && <GalaxyFadeBackdrop />}
+        <GalaxyFadeBackdrop />
         <AboutSection />
         <StepsSection />
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 pt-16 pb-16">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-7 px-6 pt-16 pb-16">
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-2xl font-medium text-white sm:text-3xl"
+            className="text-center text-2xl font-medium text-white sm:text-3xl"
           >
             {t.question}
           </motion.p>
-          <BrandButton
+          <Link
             href="/cotizaciones"
             className="inline-flex items-center justify-center rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black shadow-[0_0_25px_rgba(212,255,0,0.3)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(212,255,0,0.5)]"
           >
             {t.cta}
-          </BrandButton>
+          </Link>
         </div>
         <div className="mx-auto max-w-6xl px-6 py-16">
           <AccordionGallery items={localizedCategories} />

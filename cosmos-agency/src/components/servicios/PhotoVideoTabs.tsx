@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { ArrowUpRight, Play } from "lucide-react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import PhotoWall from "@/components/ui/PhotoWall";
 import { useLanguage } from "@/lib/language";
-import BrandButton from "@/components/ui/BrandButton";
 
 function toItems(folder: string, files: string[]) {
   return files.map((file, i) => ({
@@ -81,15 +81,15 @@ type Tab = "foto" | "video";
 const copy = {
   es: {
     tabs: { foto: "Fotografía", video: "Video" },
-    photoCaption: "Cobertura fotográfica para bodas, conciertos, marcas y más.",
-    videoCaption: "Producción audiovisual profesional.",
+    photoCaption: "Las imágenes de esta galería forman parte de nuestro portafolio y se muestran únicamente con fines demostrativos. Queda prohibida su reproducción, modificación o uso por terceros sin autorización previa.",
     playAria: "Reproducir video",
+    quotes: "IR A COTIZACIONES",
   },
   en: {
     tabs: { foto: "Photography", video: "Video" },
     photoCaption: "Photo coverage for weddings, concerts, brands, and more.",
-    videoCaption: "Professional audiovisual production.",
     playAria: "Play video",
+    quotes: "GO TO QUOTES",
   },
 };
 
@@ -133,21 +133,28 @@ export default function PhotoVideoTabs() {
       {tab === "foto" ? (
         <div>
           <PhotoWall rows={wallRows} />
-          <p className="mx-auto max-w-3xl px-6 pt-6 pb-16 text-white">{t.photoCaption}</p>
+          <p className="mx-auto max-w-3xl px-6 pt-6 text-center text-sm text-white italic">{t.photoCaption}</p>
+          <div className="flex justify-center px-6 pt-6 pb-16">
+            <Link
+              href="/cotizaciones"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold tracking-wide text-[#d4ff00] uppercase transition-transform duration-300 hover:translate-x-1"
+            >
+              {t.quotes}
+              <ArrowUpRight className="h-4 w-4 -translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="mx-auto max-w-3xl px-6 pb-16">
-          <BrandButton
+          <button
             type="button"
-            ariaLabel={t.playAria}
+            aria-label={t.playAria}
             className="group flex aspect-video w-full items-center justify-center rounded-xl border-2 border-[#d4ff00] bg-slate-900/60 shadow-[0_0_25px_rgba(212,255,0,0.2)]"
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#d4ff00] shadow-[0_0_25px_rgba(212,255,0,0.5)] transition-transform group-hover:scale-110">
               <Play className="h-6 w-6 translate-x-0.5 text-black" fill="currentColor" />
             </div>
-          </BrandButton>
-
-          <p className="mt-6 text-white">{t.videoCaption}</p>
+          </button>
         </div>
       )}
     </div>

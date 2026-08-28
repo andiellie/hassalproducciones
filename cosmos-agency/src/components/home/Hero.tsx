@@ -1,12 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTheme } from '@/lib/theme';
 
 export default function Hero() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
-
   return (
     <div className="relative min-h-[calc(100dvh-4rem)] text-white flex flex-col items-center justify-center px-6 overflow-hidden font-sans">
 
@@ -22,11 +18,7 @@ export default function Hero() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={
-                isLight
-                  ? '/LOGO/SVG/SIN FONDO/POSITIVO/COSMOS AGENCY_LOGO SIN FONDO-07.svg'
-                  : '/LOGO/cosmos-agency-hero-logo.svg'
-              }
+              src="/LOGO/cosmos-agency-hero-logo.svg"
               alt="Cosmos Agency MX"
               className="h-auto w-full"
             />

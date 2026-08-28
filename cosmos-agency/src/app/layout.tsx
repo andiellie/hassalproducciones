@@ -5,7 +5,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/ui/Preloader";
 import { LanguageProvider } from "@/lib/language";
-import { ThemeProvider } from "@/lib/theme";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -24,18 +23,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${archivo.variable} h-full antialiased`} suppressHydrationWarning>
-      <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden text-white">
-        <ThemeProvider>
-          <LanguageProvider>
-            <Preloader />
-            <div id="theme-filter-wrapper" className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col bg-[#000000]">
-              <Navbar />
-              <main className="min-w-0 flex-1">{children}</main>
-              <Footer />
-            </div>
-            <div id="cta-portal-root" className="relative z-[60]" />
-          </LanguageProvider>
-        </ThemeProvider>
+      <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden bg-[#000000] text-white">
+        <LanguageProvider>
+          <Preloader />
+          <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col">
+            <Navbar />
+            <main className="min-w-0 flex-1">{children}</main>
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

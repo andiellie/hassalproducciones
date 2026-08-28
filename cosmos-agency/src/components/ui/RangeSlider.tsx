@@ -1,7 +1,6 @@
 "use client";
 
 import { useLanguage } from "@/lib/language";
-import ExactColor from "@/components/ui/ExactColor";
 
 const BUDGET_BRACKETS_ES = ["0-5,000", "10,000", "20,000", "30,000", "40,000", "+ de 40,000"];
 const BUDGET_BRACKETS_EN = ["0-5,000", "10,000", "20,000", "30,000", "40,000", "+40,000"];
@@ -22,7 +21,7 @@ export default function RangeSlider({ value, onChange }: RangeSliderProps) {
     <div className="w-full">
       <div className="mb-2 flex justify-between text-sm text-white">
         <span>{t.label}</span>
-        <ExactColor className="font-medium text-[#d4ff00]">${brackets[value]}</ExactColor>
+        <span className="font-medium text-[#d4ff00]">${brackets[value]}</span>
       </div>
       <input
         type="range"

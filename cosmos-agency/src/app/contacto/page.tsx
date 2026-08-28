@@ -2,7 +2,6 @@
 
 import { Mail } from "lucide-react";
 import { useLanguage } from "@/lib/language";
-import BrandButton from "@/components/ui/BrandButton";
 
 function WhatsAppIcon() {
   return (
@@ -16,12 +15,10 @@ const copy = {
   es: {
     title: "Contacto",
     intro: "¿Tienes un proyecto en mente? Escríbenos directamente.",
-    cta: "Cotizar mi Evento",
   },
   en: {
     title: "Contact",
     intro: "Have a project in mind? Write to us directly.",
-    cta: "Quote My Event",
   },
 };
 
@@ -36,30 +33,26 @@ export default function ContactoPage() {
         <p className="mt-12 text-white">{t.intro}</p>
         <div className="mt-8 space-y-2 text-white">
           <p>
-            <BrandButton
+            <a
               href="mailto:ahanostyle@gmail.com"
               className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
             >
               <Mail className="h-4 w-4" />
               ahanostyle@gmail.com
-            </BrandButton>
+            </a>
           </p>
           <p>
-            <BrandButton
+            <a
               href="https://wa.me/5215640508888?text=Hola%2C%20me%20interesa%20saber%20de%20Cosmos%20Agency"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
             >
               <WhatsAppIcon />
               +52 1 56 4050 8888
-            </BrandButton>
+            </a>
           </p>
         </div>
-        <BrandButton
-          href="/cotizaciones"
-          className="mt-10 inline-block rounded-xl bg-[#d4ff00] px-7 py-3.5 text-sm font-medium text-black transition-transform hover:scale-105"
-        >
-          {t.cta}
-        </BrandButton>
       </div>
     </div>
   );

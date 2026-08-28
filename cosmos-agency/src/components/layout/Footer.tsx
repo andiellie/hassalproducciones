@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/lib/language";
-import BrandButton from "@/components/ui/BrandButton";
 
 const exploreLinks = [
   { href: "/", label: { es: "Inicio", en: "Home" } },
@@ -64,12 +63,12 @@ export default function Footer() {
         <div>
           <h4 className="font-heading text-sm font-medium uppercase tracking-wide text-white">{t.contact}</h4>
           <p className="mt-3 text-white">{t.contactLine}</p>
-          <BrandButton
+          <Link
             href="/cotizaciones"
             className="mt-2 inline-flex items-center gap-1 text-[#d4ff00] transition-colors hover:text-[#e5ff66]"
           >
             {t.quoteCta}
-          </BrandButton>
+          </Link>
         </div>
       </div>
 
