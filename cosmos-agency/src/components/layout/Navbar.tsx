@@ -38,13 +38,13 @@ export default function Navbar() {
         transition={{ type: "spring", stiffness: 120, damping: 22, mass: 1 }}
         className="relative mx-auto flex w-full max-w-6xl flex-col overflow-hidden border border-white/15 bg-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-xl"
       >
-        <div className="flex h-16 items-center justify-between gap-6 px-4 sm:px-5">
+        <div className="flex h-[72px] items-center justify-between gap-6 px-4 sm:h-[76px] sm:px-5 lg:h-16">
           <Link href="/" className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/LOGO/cosmos-agency-navbar-wordmark.svg"
               alt="Cosmos Agency MX"
-              className="h-[44px] w-auto sm:h-[52px] lg:h-[44px]"
+              className="h-[56px] w-auto sm:h-[58px] lg:h-[50px]"
             />
           </Link>
 
