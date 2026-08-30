@@ -10,7 +10,7 @@ import { useLanguage } from "@/lib/language";
 
 const links = [
   { href: "/servicios", label: { es: "Servicios", en: "Services" } },
-  { href: "/cotizaciones", label: { es: "Cotizaciones", en: "Quotes" } },
+  { href: "/cotizaciones", label: { es: "Cotizaciones", en: "Get a Quote" } },
   { href: "/contacto", label: { es: "Contacto", en: "Contact" } },
 ];
 

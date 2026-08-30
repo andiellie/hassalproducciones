@@ -72,65 +72,65 @@ const copy = {
   en: {
     title: "Terms & Conditions",
     lastUpdated: "Last updated: August 2026",
-    introPre: "At Cosmos Agency we respect your privacy. Your personal data ",
-    introHighlight: "will not be sold or misused",
-    introPost: ". Below we explain how we collect, use, and protect it.",
+    introPre: "At Cosmos Agency, we respect your privacy. Your personal data ",
+    introHighlight: "will not be sold or used improperly",
+    introPost: ". Below, we explain how we collect, use, and protect it.",
     sections: [
       {
-        title: "1. Acceptance of terms",
+        title: "1. Acceptance",
         body: [
-          "By accessing and using the Cosmos Agency website (cosmosagencymx), as well as requesting a quote or hiring our marketing, photography, and audiovisual production services, you accept these Terms & Conditions.",
+          "By accessing and using the Cosmos Agency website (cosmosagencymx), as well as by requesting a quote or hiring our marketing, photography, and audiovisual production services, you agree to these Terms and Conditions.",
         ],
       },
       {
-        title: "2. Data we collect",
+        title: "2. Data Collection",
         body: [
-          "Through our contact and quote forms we may request: name, email address, phone number, type of event or service, estimated budget, and message or additional details.",
-          "We may also receive data when you contact us directly by email or WhatsApp.",
+          "Through our contact and quote request forms, we may ask for information such as your name, email address, phone number, type of event or service, estimated budget, and any message or additional details.",
+          "We may also receive information when you contact us directly by email or WhatsApp.",
         ],
       },
       {
-        title: "3. Use of your data",
+        title: "3. Use of Data",
         body: [
-          "Your data is used solely to: respond to your quote or information request, coordinate delivery of the contracted service, and follow up on your event or project.",
+          "We use your data solely to respond to your request for a quote or information, coordinate the delivery of contracted services, and follow up regarding your event or project.",
           "We do not use your data for purposes other than those described here without your consent.",
         ],
       },
       {
-        title: "4. No sale or misuse of data",
+        title: "4. No Sale of Personal Data",
         body: [
           "Cosmos Agency does not sell, rent, or share your personal data with third parties for commercial or advertising purposes.",
-          "Your data will not be misused or shared outside the Cosmos Agency team, except where required by an explicit legal obligation.",
+          "Your data will not be used improperly or shared outside the Cosmos Agency team, unless we are expressly required to do so by law.",
         ],
       },
       {
-        title: "5. Retention and security",
+        title: "5. Data Retention",
         body: [
-          "We keep your data only for as long as necessary to handle your request or fulfill the contracted service relationship, and we take reasonable measures to protect it from unauthorized access.",
+          "We retain your data only for as long as necessary to respond to your request or fulfill the contracted service relationship, and we take reasonable measures to protect it from unauthorized access.",
         ],
       },
       {
-        title: "6. Your rights",
+        title: "6. User Rights",
         body: [
-          "You may request access to, correction of, or deletion of your personal data on file at any time by writing to ahanostyle@gmail.com.",
+          "You may request access to, correction of, or deletion of the personal data we have on file at any time by contacting us at ahanostyle@gmail.com.",
         ],
       },
       {
-        title: "7. Audiovisual material",
+        title: "7. Audiovisual Material",
         body: [
-          "When you hire our photography and video services, the captured material may be used by Cosmos Agency for portfolio or promotional purposes, unless otherwise agreed in writing with the client.",
+          "When you hire our photography and video services, the material captured may be used by Cosmos Agency for portfolio or promotional purposes, unless otherwise agreed in writing with the client.",
         ],
       },
       {
-        title: "8. Changes to this document",
+        title: "8. Updates to This Document",
         body: [
-          "We may update these Terms & Conditions occasionally. Changes will be reflected on this same page with the last-updated date.",
+          "We may update these Terms and Conditions from time to time. Any changes will be reflected on this page along with the date of the latest update.",
         ],
       },
       {
         title: "9. Contact",
         body: [
-          "For any questions about this document or how your data is handled, contact us at ahanostyle@gmail.com or at +52 1 56 4050 8888.",
+          "If you have any questions about this document or how we handle your data, contact us at ahanostyle@gmail.com or +52 1 56 4050 8888.",
         ],
       },
     ],

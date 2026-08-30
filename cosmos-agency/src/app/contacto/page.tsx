@@ -18,7 +18,7 @@ const copy = {
   },
   en: {
     title: "Contact",
-    intro: "Have a project in mind? Write to us directly.",
+    intro: "Still have questions about how we work? Get in touch with us directly.",
   },
 };
 

@@ -33,14 +33,14 @@ const eventCategories = [
   },
   {
     image: "/imagenes/Home/Categorias/RETRATOS%20IN%20%26%20OUT.jpg",
-    label: { es: "Retratos In & Out", en: "Portraits In & Out" },
+    label: { es: "Retratos In & Out", en: "Indoor & Outdoor Portraits" },
     link: "/servicios/fotografia",
   },
 ];
 
 const copy = {
   es: { question: "¿PIENSAS REALIZAR UN EVENTO MEMORABLE?", cta: "Cotizar mi Evento" },
-  en: { question: "PLANNING A MEMORABLE EVENT?", cta: "Quote My Event" },
+  en: { question: "PLANNING AN UNFORGETTABLE EVENT?", cta: "Get a Quote for My Event" },
 };
 
 const logos = [

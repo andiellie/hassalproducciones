@@ -87,9 +87,9 @@ const copy = {
   },
   en: {
     tabs: { foto: "Photography", video: "Video" },
-    photoCaption: "Photo coverage for weddings, concerts, brands, and more.",
+    photoCaption: "Note: The images in this gallery are part of our portfolio and are displayed for demonstration purposes only. Their reproduction, modification, or use by third parties without prior authorization is prohibited.",
     playAria: "Play video",
-    quotes: "GO TO QUOTES",
+    quotes: "GET A QUOTE",
   },
 };
 

@@ -6,9 +6,9 @@ import { useLanguage } from "@/lib/language";
 const exploreLinks = [
   { href: "/", label: { es: "Inicio", en: "Home" } },
   { href: "/servicios", label: { es: "Servicios", en: "Services" } },
-  { href: "/cotizaciones", label: { es: "Cotizaciones", en: "Quotes" } },
+  { href: "/cotizaciones", label: { es: "Cotizaciones", en: "Get a Quote" } },
   { href: "/contacto", label: { es: "Contacto", en: "Contact" } },
-  { href: "/terminos-y-condiciones", label: { es: "Términos y Condiciones", en: "Terms & Conditions" } },
+  { href: "/terminos-y-condiciones", label: { es: "Términos y Condiciones", en: "Terms and Conditions" } },
 ];
 
 const copy = {
@@ -24,9 +24,9 @@ const copy = {
     explore: "Explore",
     contact: "Contact",
     contactLine: "Let's talk about your next event.",
-    quoteCta: "Request a quote →",
+    quoteCta: "Request a Quote →",
     rights: "All rights reserved.",
-    madeBy: "Website built by",
+    madeBy: "Website by",
   },
 };
 
@@ -44,6 +44,7 @@ export default function Footer() {
             alt="Cosmos Agency MX"
             className="h-[128px] w-auto sm:h-[77px]"
           />
+          <p className="mt-2 text-xs text-white/60 sm:text-[11px]">...creating &amp; connecting with brands</p>
         </div>
 
         <div>
