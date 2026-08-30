@@ -102,7 +102,7 @@ export default function EstimatedDatePicker({
       </button>
 
       {open && (
-        <div className="absolute z-20 mt-2 w-72 rounded-xl border border-white/15 bg-black/95 p-4 shadow-[0_0_25px_rgba(212,255,0,0.15)] backdrop-blur-xl">
+        <div className="absolute z-20 mt-2 w-72 max-w-[85vw] rounded-xl border border-white/15 bg-black/95 p-4 shadow-[0_0_25px_rgba(212,255,0,0.15)] backdrop-blur-xl">
           <div className="mb-3 flex items-center justify-between">
             <button
               type="button"
@@ -148,7 +148,7 @@ export default function EstimatedDatePicker({
                     onChange(toISO(date));
                     setOpen(false);
                   }}
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-xs transition-colors ${
+                  className={`flex aspect-square w-full items-center justify-center rounded-full text-xs transition-colors ${
                     isSelected
                       ? "bg-[#d4ff00] font-semibold text-black"
                       : inRange
