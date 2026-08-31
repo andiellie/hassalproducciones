@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -16,10 +17,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="mx-auto w-full max-w-[720px] scale-[1.32] lg:scale-100"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/LOGO/cosmos-agency-hero-logo.svg"
               alt="Cosmos Agency MX"
+              width={2100}
+              height={1080}
+              priority
               className="h-auto w-full"
             />
           </motion.div>

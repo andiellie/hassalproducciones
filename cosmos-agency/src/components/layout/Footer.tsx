@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language";
 
@@ -38,10 +39,11 @@ export default function Footer() {
     <footer className="border-t border-white/15 bg-[#000000] px-6 py-16 text-sm text-white">
       <div className="mx-auto grid max-w-6xl gap-12 sm:grid-cols-3">
         <div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/LOGO/cosmos-agency-navbar-wordmark.svg"
             alt="Cosmos Agency MX"
+            width={2100}
+            height={1080}
             className="h-[141px] w-auto sm:h-[85px]"
           />
           <p className="mt-2 text-xs text-white/60 sm:text-[11px]">...creating &amp; connecting with brands</p>

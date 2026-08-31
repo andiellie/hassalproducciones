@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -42,10 +43,12 @@ export default function Navbar() {
       >
         <div className="flex h-[72px] items-center justify-between gap-6 px-4 sm:h-[76px] sm:px-5 lg:h-16">
           <Link href="/" className="flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/LOGO/cosmos-agency-navbar-wordmark.svg"
               alt="Cosmos Agency MX"
+              width={2100}
+              height={1080}
+              priority
               className="h-[56px] w-auto sm:h-[58px] lg:h-[50px]"
             />
           </Link>
