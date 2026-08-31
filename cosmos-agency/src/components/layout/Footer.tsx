@@ -42,7 +42,7 @@ export default function Footer() {
           <img
             src="/LOGO/cosmos-agency-navbar-wordmark.svg"
             alt="Cosmos Agency MX"
-            className="h-[128px] w-auto sm:h-[77px]"
+            className="h-[141px] w-auto sm:h-[85px]"
           />
           <p className="mt-2 text-xs text-white/60 sm:text-[11px]">...creating &amp; connecting with brands</p>
         </div>

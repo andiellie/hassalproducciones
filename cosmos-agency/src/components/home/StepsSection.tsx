@@ -18,13 +18,13 @@ const copy = {
     ],
   },
   en: {
-    title: 'Steps to be part of your event',
-    subtitle: 'From planning to delivery, we make it simple.',
+    title: 'DISCOVER HOW WE WORK…',
+    subtitle: 'To deliver the best possible result, we start with the pre-production of your event, project, or idea.',
     quote: 'Get a quote',
     steps: [
-      { title: 'TELL US YOUR IDEA', description: 'Fill out the form on our website so we can learn the basics about your project, event, or idea. ' },
-      { title: 'LETS DEFINE THE PROJECT', description: 'We’ll schedule an introductory video call, answer your questions, and define the scope, production dates, and logistics for your project, event, or idea.' },
-      { title: 'LETS MAKE IT OFFICIAL', description: 'Payment of the deposit, approval of the pre-production plan, and delivery of the service agreements.' },
+      { title: 'TELL US YOUR IDEA', description: 'Fill out the form on our website so we can learn the basics about your project, event, or idea.' },
+      { title: "LET'S DEFINE THE PROJECT", description: "We'll schedule an introductory video call, answer your questions, and define the scope, production dates, and logistics for your project, event, or idea." },
+      { title: "LET'S MAKE IT OFFICIAL", description: 'Payment of the deposit, approval of the pre-production plan, and delivery of the service agreements.' },
       { title: 'PRODUCTION', description: 'We produce your project, event, or idea and confirm the delivery timeline.' },
     ],
   },
@@ -35,8 +35,8 @@ export default function StepsSection() {
   const t = copy[lang];
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
-      <div className="mx-auto max-w-2xl text-left">
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-6xl text-center">
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function StepsSection() {
           {t.subtitle}
         </motion.p>
       </div>
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4">
+      <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4">
         {t.steps.map((step, i) => (
           <motion.div
             key={step.title}
@@ -84,7 +84,7 @@ export default function StepsSection() {
             >
               0{i + 1}
             </motion.span>
-            <h3 className="font-heading mt-2 text-lg font-semibold">{step.title}</h3>
+            <h3 className="font-heading mt-2 min-h-[56px] text-lg font-semibold">{step.title}</h3>
             <p className="mt-2 text-sm font-normal text-white">{step.description}</p>
             <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#d4ff00] transition-all duration-300 group-hover:w-full" />
           </motion.div>

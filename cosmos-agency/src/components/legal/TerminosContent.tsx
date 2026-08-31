@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/language";
 
 const copy = {
@@ -143,25 +144,45 @@ export default function TerminosContent() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-4xl font-bold text-white sm:text-5xl">{t.title}</h1>
+      <motion.h1
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="text-4xl font-bold text-white sm:text-5xl"
+      >
+        {t.title}
+      </motion.h1>
       <p className="mt-4 text-sm text-white/70">{t.lastUpdated}</p>
 
-      <p className="mt-8 text-white">
+      <motion.p
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+        className="mt-8 text-white"
+      >
         {t.introPre}
         <span className="text-[#d4ff00]">{t.introHighlight}</span>
         {t.introPost}
-      </p>
+      </motion.p>
 
       <div className="mt-10 space-y-8">
-        {t.sections.map((section) => (
-          <div key={section.title}>
+        {t.sections.map((section, i) => (
+          <motion.div
+            key={section.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.5, delay: Math.min(i * 0.06, 0.3), ease: "easeOut" }}
+          >
             <h2 className="font-heading text-xl font-medium text-white">{section.title}</h2>
             <div className="mt-2 space-y-2 text-white/80">
-              {section.body.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
+              {section.body.map((paragraph, j) => (
+                <p key={j}>{paragraph}</p>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

@@ -137,10 +137,10 @@ export default function PhotoVideoTabs() {
           <div className="flex justify-center px-6 pt-6 pb-16">
             <Link
               href="/cotizaciones"
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold tracking-wide text-[#d4ff00] uppercase transition-transform duration-300 hover:translate-x-1"
+              className="group inline-flex items-center gap-2 rounded-full border border-[#d4ff00]/60 bg-transparent px-8 py-4 text-sm font-semibold tracking-wide text-[#d4ff00] uppercase shadow-[0_0_20px_rgba(212,255,0,0.25)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4ff00] hover:shadow-[0_0_35px_rgba(212,255,0,0.45)]"
             >
               {t.quotes}
-              <ArrowUpRight className="h-4 w-4 -translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

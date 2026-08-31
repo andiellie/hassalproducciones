@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 
@@ -15,10 +16,12 @@ const copy = {
   es: {
     title: "Contacto",
     intro: "¿Tienes un proyecto en mente? Escríbenos directamente.",
+    whatsappMessage: "Hola, me interesa trabajar con Cosmos Agency.",
   },
   en: {
     title: "Contact",
     intro: "Still have questions about how we work? Get in touch with us directly.",
+    whatsappMessage: "Hi, I'm interested in working with Cosmos Agency.",
   },
 };
 
@@ -29,13 +32,35 @@ export default function ContactoPage() {
   return (
     <div className="relative">
       <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
-        <h1 className="text-4xl font-bold text-white sm:text-5xl">{t.title}</h1>
-        <p className="mt-12 text-white">{t.intro}</p>
-        <div className="mt-8 space-y-2 text-white">
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-4xl font-bold text-white sm:text-5xl"
+        >
+          {t.title}
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          className="mt-12 text-white"
+        >
+          {t.intro}
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="mt-8 space-y-2 text-white"
+        >
           <p>
             <a
               href="mailto:ahanostyle@gmail.com"
-              className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
+              className="inline-flex items-center justify-center gap-2 text-white transition-all duration-300 hover:gap-3 hover:text-[#d4ff00]"
             >
               <Mail className="h-4 w-4" />
               ahanostyle@gmail.com
@@ -43,16 +68,16 @@ export default function ContactoPage() {
           </p>
           <p>
             <a
-              href="https://wa.me/5215640508888?text=Hola%2C%20me%20interesa%20saber%20de%20Cosmos%20Agency"
+              href={`https://wa.me/5215640508888?text=${encodeURIComponent(t.whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 text-white transition-colors hover:text-[#d4ff00]"
+              className="inline-flex items-center justify-center gap-2 text-white transition-all duration-300 hover:gap-3 hover:text-[#d4ff00]"
             >
               <WhatsAppIcon />
               +52 1 56 4050 8888
             </a>
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

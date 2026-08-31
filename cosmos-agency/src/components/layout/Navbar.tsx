@@ -59,7 +59,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setHash(linkHash)}
-                    className={`transition-colors hover:text-white ${
+                    className={`transition-colors hover:text-[#d4ff00] ${
                       isActive ? "text-[#d4ff00]" : ""
                     }`}
                   >
@@ -122,7 +122,7 @@ export default function Navbar() {
                           setHash(linkHash);
                           setMobileOpen(false);
                         }}
-                        className={`block transition-colors hover:text-white ${
+                        className={`block transition-colors hover:text-[#d4ff00] ${
                           isActive ? "text-[#d4ff00]" : ""
                         }`}
                       >

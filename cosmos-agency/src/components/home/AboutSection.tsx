@@ -14,9 +14,9 @@ const copy = {
     cta: 'CONOCE COSMOS',
   },
   en: {
-    title: "What makes Cosmos different?",
-    p1: 'We are a versatile creative agency.',
-    cta: 'See our work',
+    title: "WE DON'T FOLLOW FORMULAS. WE BRING IDEAS TO LIFE.",
+    p1: 'Every project starts with an idea. At Cosmos, we find the best way to bring it to life by combining creativity, production, and the right tools to create something that connects with people and/or brands.',
+    cta: 'DISCOVER COSMOS',
   },
 };
 
@@ -34,7 +34,13 @@ export default function AboutSection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="font-heading mt-2 text-3xl font-medium sm:mt-4 sm:text-4xl"
         >
-          {t.title}
+          {t.title.split(". ").map((line, i, arr) => (
+            <span key={i}>
+              {line}
+              {i < arr.length - 1 ? "." : ""}
+              {i < arr.length - 1 && <br />}
+            </span>
+          ))}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 24 }}

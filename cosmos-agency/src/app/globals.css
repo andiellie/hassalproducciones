@@ -87,9 +87,13 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+.text-white {
+  color: #f8f5f5;
+}
+
 :root {
   --background: #000000;
-  --foreground: #ffffff;
+  --foreground: #f8f5f5;
   --card: #0b1220;
   --card-foreground: #ffffff;
   --popover: #0b1220;
