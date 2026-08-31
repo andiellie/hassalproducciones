@@ -44,7 +44,7 @@ export default function Footer() {
             alt="Cosmos Agency MX"
             width={2100}
             height={1080}
-            className="h-[141px] w-auto sm:h-[85px]"
+            className="h-[176px] w-auto sm:h-[85px]"
           />
           <p className="mt-2 text-xs text-white/60 sm:text-[11px]">...creating &amp; connecting with brands</p>
         </div>
