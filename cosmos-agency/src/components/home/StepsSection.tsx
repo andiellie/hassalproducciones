@@ -13,7 +13,7 @@ const copy = {
     steps: [
       { title: 'CUÉNTANOS TU IDEA', description: 'Llena el formulario de nuestra página web para recibir la información básica de tu proyecto, evento o idea.' },
       { title: 'ATERRICEMOS EL PROYECTO', description: 'Videollamada de presentación, sesión de preguntas y respuestas y definir contratación, fechas de producción y logística del proyecto, evento o idea.' },
-      { title: 'HAGÁMOSLO OFICIAL', description: 'Pago del anticipo, validación de la pre-producción y entrega de contratos de servicio.' },
+      { title: 'HAGÁMOSLO OFICIAL', description: 'Validación de la pre-producción y entrega de contratos de servicio.' },
       { title: 'PRODUCCIÓN DE TU EVENTO', description: 'Producción del proyecto, evento o idea y definimos fechas de entrega.' },
     ],
   },
@@ -24,7 +24,7 @@ const copy = {
     steps: [
       { title: 'TELL US YOUR IDEA', description: 'Fill out the form on our website so we can learn the basics about your project, event, or idea.' },
       { title: "LET'S DEFINE THE PROJECT", description: "We'll schedule an introductory video call, answer your questions, and define the scope, production dates, and logistics for your project, event, or idea." },
-      { title: "LET'S MAKE IT OFFICIAL", description: 'Payment of the deposit, approval of the pre-production plan, and delivery of the service agreements.' },
+      { title: "LET'S MAKE IT OFFICIAL", description: 'Approval of the pre-production plan, and delivery of the service agreements.' },
       { title: 'PRODUCTION', description: 'We produce your project, event, or idea and confirm the delivery timeline.' },
     ],
   },

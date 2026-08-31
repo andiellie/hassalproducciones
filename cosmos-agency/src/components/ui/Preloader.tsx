@@ -7,7 +7,7 @@ const HOLD_MS = 2400;
 
 function EclipseRing() {
   return (
-    <div className="mt-[5.3vh] scale-[1.65] lg:mt-[8vh] lg:scale-100">
+    <div className="mt-[7.3vh] scale-[1.65] lg:mt-[8vh] lg:scale-100">
       <motion.img
         src="/LOGO/cosmos-agency-preloader-logo.svg"
         alt=""
