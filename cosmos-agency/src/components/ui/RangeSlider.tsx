@@ -33,7 +33,7 @@ export default function RangeSlider({ value, onChange }: RangeSliderProps) {
         step={1}
         value={safeValue}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-[#d4ff00]"
+        className="cosmos-range h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-[#d4ff00]"
       />
       <div className="mt-2 flex flex-wrap justify-between gap-x-1 gap-y-1 text-[10px] text-white/90 sm:text-xs">
         {brackets.map((label) => (

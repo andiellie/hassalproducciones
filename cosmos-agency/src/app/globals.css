@@ -91,6 +91,25 @@ body {
   color: #f8f5f5;
 }
 
+.cosmos-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: #d4ff00;
+  cursor: pointer;
+}
+
+.cosmos-range::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: #d4ff00;
+  border: none;
+  cursor: pointer;
+}
+
 :root {
   --background: #000000;
   --foreground: #f8f5f5;
