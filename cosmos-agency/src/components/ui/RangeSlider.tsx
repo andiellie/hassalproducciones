@@ -35,11 +35,9 @@ export default function RangeSlider({ value, onChange }: RangeSliderProps) {
         onChange={(e) => onChange(Number(e.target.value))}
         className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-[#d4ff00]"
       />
-      <div className="mt-2 flex justify-between text-xs text-white/90">
-        {brackets.map((label, i) => (
-          <span key={label} className={i !== 0 && i !== brackets.length - 1 ? "hidden sm:inline" : undefined}>
-            {label}
-          </span>
+      <div className="mt-2 flex flex-wrap justify-between gap-x-1 gap-y-1 text-[10px] text-white/90 sm:text-xs">
+        {brackets.map((label) => (
+          <span key={label}>{label}</span>
         ))}
       </div>
     </div>

@@ -70,7 +70,8 @@ const copy = {
     estimatedDate: "Fecha estimada",
     dateRangeHint: "(rango de 5 días)",
     dateError: "Selecciona una fecha o rango estimado para continuar.",
-    referencesPlaceholder: "Pega un enlace y presiona Enter (máximo 3)",
+    referencesPlaceholder: "Inserta un link de referencia / inspiración (opcional)",
+    referencesAddMore: (n: number) => `Agrega ${n} más (opcional)`,
     referencesError: "Revisa que el enlace tenga un formato válido (ej. https://...)",
     dontWantPlaceholder: "¿Hay algo que definitivamente no quieres? (opcional)",
     incompleteStepHint: "Completa los campos obligatorios para continuar.",
@@ -106,7 +107,8 @@ const copy = {
     estimatedDate: "Estimated date",
     dateRangeHint: "(5-day range)",
     dateError: "Select an estimated date or range to continue.",
-    referencesPlaceholder: "Paste a link and press Enter (max 3)",
+    referencesPlaceholder: "Insert a reference / inspiration link (optional)",
+    referencesAddMore: (n: number) => `Add ${n} more (optional)`,
     referencesError: "Check that the link has a valid format (e.g. https://...)",
     dontWantPlaceholder: "Is there anything you definitely don't want? (optional)",
     incompleteStepHint: "Complete the required fields to continue.",
@@ -611,7 +613,11 @@ export default function QuoteForm() {
                 <input
                   ref={referencesRef}
                   type="text"
-                  placeholder={t.referencesPlaceholder}
+                  placeholder={
+                    data.references.length > 0
+                      ? t.referencesAddMore(3 - data.references.length)
+                      : t.referencesPlaceholder
+                  }
                   value={referenceDraft}
                   onChange={(e) => setReferenceDraft(e.target.value)}
                   onKeyDown={(e) => {
