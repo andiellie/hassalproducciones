@@ -3,7 +3,6 @@ import { Archivo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Preloader from "@/components/ui/Preloader";
 import { LanguageProvider } from "@/lib/language";
 
 const archivo = Archivo({
@@ -25,7 +24,6 @@ export default function RootLayout({
     <html lang="es" className={`${archivo.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden bg-[#000000] text-white">
         <LanguageProvider>
-          <Preloader />
           <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col">
             <Navbar />
             <main className="min-w-0 flex-1">{children}</main>

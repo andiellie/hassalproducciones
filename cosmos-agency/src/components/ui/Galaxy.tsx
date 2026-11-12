@@ -219,9 +219,15 @@ export default function Galaxy({
   useEffect(() => {
     if (!ctnDom.current) return;
     const ctn = ctnDom.current;
+    // Phones/tablets: render the shader at half resolution and 30fps.
+    // The stars are soft glows, so the lower resolution is not visible.
+    const isLowPower = window.matchMedia('(max-width: 1023px), (pointer: coarse)').matches;
+    const frameInterval = isLowPower ? 1000 / 30 : 0;
+    let lastFrame = 0;
     const renderer = new Renderer({
       alpha: transparent,
       premultipliedAlpha: false,
+      dpr: isLowPower ? 0.5 : 1,
     });
     const gl = renderer.gl;
 
@@ -235,9 +241,14 @@ export default function Galaxy({
 
     let program: Program;
 
+    let lastW = 0;
+    let lastH = 0;
     function resize() {
-      const scale = 1;
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+      // Mobile browsers fire resize when the URL bar shows/hides; skip if the container didn't change.
+      if (ctn.offsetWidth === lastW && ctn.offsetHeight === lastH) return;
+      lastW = ctn.offsetWidth;
+      lastH = ctn.offsetHeight;
+      renderer.setSize(lastW, lastH);
       if (program) {
         program.uniforms.uResolution.value = new Color(
           gl.canvas.width,
@@ -303,6 +314,8 @@ export default function Galaxy({
 
     function update(t: number) {
       animateId = requestAnimationFrame(update);
+      if (frameInterval && t - lastFrame < frameInterval) return;
+      lastFrame = t;
       if (!disableAnimation) {
         program.uniforms.uTime.value = t * 0.001;
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
