@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { useLanguage } from '@/lib/language';
+import { useLanguage } from '@/lib/i18n';
+import { fadeInUp } from "@/lib/animations";
 
 const copy = {
   es: {
@@ -38,19 +39,13 @@ export default function StepsSection() {
     <section className="px-6 py-24">
       <div className="mx-auto max-w-6xl text-center">
         <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          {...fadeInUp()}
           className="font-heading mt-2 text-3xl font-medium sm:mt-4 sm:text-4xl"
         >
           {t.title}
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+          {...fadeInUp(0.1)}
           className="mt-3 text-lg text-white"
         >
           {t.subtitle}

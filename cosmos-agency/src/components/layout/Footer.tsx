@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useLanguage } from "@/lib/language";
+import { useLanguage } from "@/lib/i18n";
 
 const exploreLinks = [
   { href: "/", label: { es: "Inicio", en: "Home" } },

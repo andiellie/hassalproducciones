@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "@/lib/language";
+import { useLanguage } from "@/lib/i18n";
 
 const BUDGET_BRACKETS_ES = ["0-5,000", "10,000", "20,000", "30,000", "40,000", "+ de 40,000"];
 const BUDGET_BRACKETS_EN = ["0-5,000", "10,000", "20,000", "30,000", "40,000", "40,000+"];

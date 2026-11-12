@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { useLanguage } from '@/lib/language';
+import { useLanguage } from '@/lib/i18n';
+import { fadeInUp } from "@/lib/animations";
 
 const MotionLink = motion.create(Link);
 
@@ -28,10 +29,7 @@ export default function AboutSection() {
     <section className="mx-auto flex min-h-[100dvh] max-w-6xl flex-col justify-center px-6 py-16 sm:py-24">
       <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-left backdrop-blur-xl sm:p-12">
         <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          {...fadeInUp()}
           className="font-heading mt-2 text-3xl font-medium sm:mt-4 sm:text-4xl"
         >
           {t.title.split(". ").map((line, i, arr) => (
@@ -43,10 +41,7 @@ export default function AboutSection() {
           ))}
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+          {...fadeInUp(0.1)}
           className="mt-6 text-lg leading-relaxed text-white"
         >
           {t.p1}

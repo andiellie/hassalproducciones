@@ -5,244 +5,25 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MorphIcon } from "morphicons/react";
 import { ArrowLeft, ArrowRight, Check, CircleCheck, X } from "lucide";
 import RangeSlider from "@/components/ui/RangeSlider";
-import EstimatedDatePicker from "@/components/cotizaciones/EstimatedDatePicker";
-import type { QuoteFormData } from "@/types";
-import { useLanguage, type Lang } from "@/lib/language";
-
-// Canonical (Spanish) values are what gets stored/sent to the backend,
-// regardless of the UI language, so the internal notification email stays consistent.
-const companyTypes = ["Marca", "Boda", "Evento Social", "Música/Concierto", "Organizador de Eventos", "Persona Individual", "Otro"];
-const serviceTypes = ["Fotografía", "Video", "Marketing", "Producción de Contenido", "Otro"];
-const contactMethodOptions = ["WhatsApp", "Videollamada", "Llamada", "Correo"];
-const DONT_WANT_MAX_LENGTH = 500;
-
-const companyTypeLabelsEn: Record<string, string> = {
-  "Marca": "Brand",
-  "Boda": "Wedding",
-  "Evento Social": "Social Event",
-  "Música/Concierto": "Music/Concert",
-  "Organizador de Eventos": "Event Organizer",
-  "Persona Individual": "Individual",
-  "Otro": "Other",
-};
-
-const serviceTypeLabelsEn: Record<string, string> = {
-  "Fotografía": "Photography",
-  "Video": "Video",
-  "Marketing": "Marketing",
-  "Producción de Contenido": "Content Production",
-  "Otro": "Other",
-};
-
-const contactMethodLabelsEn: Record<string, string> = {
-  "WhatsApp": "WhatsApp",
-  "Videollamada": "Video Call",
-  "Llamada": "Phone Call",
-  "Correo": "Email",
-};
-
-function localize(value: string, lang: Lang, map: Record<string, string>) {
-  return lang === "en" ? map[value] ?? value : value;
-}
-
-const copy = {
-  es: {
-    steps: ["Cuéntanos sobre ti", "Tu proyecto", "Detalles finales"],
-    intro: "Completa este formulario y prepararemos una propuesta pensada en tus objetivos, tiempos y presupuesto.",
-    select: "Selecciona",
-    name: "Nombre",
-    namePlaceholder: "Por favor, compártenos tu nombre",
-    nameError: "Escribe tu nombre para continuar.",
-    companyType: "Tipo de empresa",
-    companyTypeError: "Selecciona al menos un tipo de empresa para continuar.",
-    companyTypeOtherPlaceholder: "¿Qué tipo de empresa?",
-    email: "Correo",
-    emailRequiredError: "Ingresa tu correo para poder contactarte.",
-    emailFormatError: "Revisa que el correo tenga un formato válido (ej. hola@dominio.com).",
-    whatsapp: "WhatsApp",
-    whatsappRequiredError: "Ingresa tu número de WhatsApp.",
-    whatsappLengthError: "Verifica que el número tenga 10 dígitos.",
-    preferredContact: "Medio de contacto preferido",
-    contactMethodError: "Selecciona un medio de contacto para que podamos enviarte tu cotización.",
-    serviceType: "Tipo de servicio",
-    serviceTypeHint: "(puedes seleccionar los que necesites)",
-    serviceTypeError: "Por favor, elige al menos un servicio para tu proyecto.",
-    estimatedDate: "Fecha estimada",
-    dateRangeHint: "(rango de 5 días)",
-    dateError: "Selecciona una fecha o rango estimado para continuar.",
-    referencesPlaceholder: "Inserta un link de referencia / inspiración (opcional)",
-    referencesAddMore: (n: number) => `Agrega ${n} más (opcional)`,
-    referencesError: "Revisa que el enlace tenga un formato válido (ej. https://...)",
-    dontWantPlaceholder: "¿Hay algo que definitivamente no quieres? (opcional)",
-    incompleteStepHint: "Completa los campos obligatorios para continuar.",
-    back: "Atrás",
-    next: "Siguiente",
-    send: "Enviar cotización",
-    sending: "Enviando...",
-    error: "Hubo un problema al enviar tu solicitud. Intenta de nuevo o escríbenos por WhatsApp.",
-    successTitle: "¡Listo! Recibimos tu proyecto.",
-    successBody: (name: string) => `Te contactaremos pronto${name ? `, ${name},` : ""} para dar el siguiente paso.`,
-  },
-  en: {
-    steps: ["Tell us about yourself", "Your project", "Final details"],
-    intro: "Fill out this form and we'll prepare a proposal tailored to your goals, timeline, and budget.",
-    select: "Select",
-    name: "Name",
-    namePlaceholder: "Please share your name with us",
-    nameError: "Enter your name to continue.",
-    companyType: "Company type",
-    companyTypeError: "Select at least one company type to continue.",
-    companyTypeOtherPlaceholder: "What type of company?",
-    email: "Email",
-    emailRequiredError: "Enter your email so we can contact you.",
-    emailFormatError: "Check that the email has a valid format (e.g. hello@domain.com).",
-    whatsapp: "WhatsApp",
-    whatsappRequiredError: "Enter your WhatsApp number.",
-    whatsappLengthError: "Make sure the number has 10 digits.",
-    preferredContact: "Preferred contact method",
-    contactMethodError: "Select a contact method so we can send you your quote.",
-    serviceType: "Service type",
-    serviceTypeHint: "(select as many as you need)",
-    serviceTypeError: "Please choose at least one service for your project.",
-    estimatedDate: "Estimated date",
-    dateRangeHint: "(5-day range)",
-    dateError: "Select an estimated date or range to continue.",
-    referencesPlaceholder: "Insert a reference / inspiration link (optional)",
-    referencesAddMore: (n: number) => `Add ${n} more (optional)`,
-    referencesError: "Check that the link has a valid format (e.g. https://...)",
-    dontWantPlaceholder: "Is there anything you definitely don't want? (optional)",
-    incompleteStepHint: "Complete the required fields to continue.",
-    back: "Back",
-    next: "Next",
-    send: "Send Quote Request",
-    sending: "Sending...",
-    error: "There was a problem sending your request. Try again or message us on WhatsApp.",
-    successTitle: "Done! We received your project.",
-    successBody: (name: string) => `We'll reach out to you${name ? `, ${name},` : ""} soon to take the next step.`,
-  },
-};
-
-function TagSelector({
-  options,
-  value,
-  onChange,
-  getLabel,
-  selectLabel,
-}: {
-  options: string[];
-  value: string;
-  onChange: (v: string) => void;
-  getLabel: (v: string) => string;
-  selectLabel: string;
-}) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {value === "" && (
-        <span className="flex min-w-[110px] items-center justify-center rounded-full border border-dashed border-white/20 px-4 py-2 text-center text-sm text-white/40">
-          {selectLabel}
-        </span>
-      )}
-      {options.map((option) => (
-        <button
-          key={option}
-          type="button"
-          onClick={() => onChange(value === option ? "" : option)}
-          className={`flex min-w-[110px] items-center justify-center gap-1.5 rounded-full border px-4 py-2 text-center text-sm transition-colors ${
-            value === option
-              ? "border-[#d4ff00] bg-[#d4ff00] text-black"
-              : "border-white/15 bg-white/5 text-white backdrop-blur-xl hover:border-white/30"
-          }`}
-        >
-          {getLabel(option)}
-          {value === option && <MorphIcon icon={X} size={14} />}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function MultiTagSelector({
-  options,
-  value,
-  onChange,
-  getLabel,
-  selectLabel,
-  max = Infinity,
-  error = false,
-  hidePlaceholder = false,
-}: {
-  options: string[];
-  value: string[];
-  onChange: (v: string[]) => void;
-  getLabel: (v: string) => string;
-  selectLabel?: string;
-  max?: number;
-  error?: boolean;
-  hidePlaceholder?: boolean;
-}) {
-  return (
-    <div
-      className={`flex flex-wrap gap-2 rounded-xl p-1 ${error ? "ring-1 ring-red-500" : ""}`}
-    >
-      {value.length === 0 && !hidePlaceholder && (
-        <span className="flex min-w-[110px] items-center justify-center rounded-full border border-dashed border-white/20 px-4 py-2 text-center text-sm text-white/40">
-          {selectLabel}
-        </span>
-      )}
-      {options.map((option) => {
-        const isSelected = value.includes(option);
-        const disabled = !isSelected && value.length >= max;
-        return (
-          <button
-            key={option}
-            type="button"
-            disabled={disabled}
-            onClick={() =>
-              onChange(isSelected ? value.filter((v) => v !== option) : [...value, option])
-            }
-            className={`flex min-w-[110px] items-center justify-center gap-1.5 rounded-full border px-4 py-2 text-center text-sm transition-colors ${
-              isSelected
-                ? "border-[#d4ff00] bg-[#d4ff00] text-black"
-                : disabled
-                  ? "border-white/10 bg-white/5 text-white/30"
-                  : "border-white/15 bg-white/5 text-white backdrop-blur-xl hover:border-white/30"
-            }`}
-          >
-            {getLabel(option)}
-            {isSelected && <MorphIcon icon={X} size={14} />}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-const inputClass =
-  "w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-xl placeholder:text-white/50 transition-shadow duration-300 focus:border-[#d4ff00] focus:shadow-[0_0_15px_rgba(212,255,0,0.4)]";
-
-function ErrorShake({
-  trigger,
-  active,
-  children,
-}: {
-  trigger: number;
-  active: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <motion.div
-      key={active ? trigger : "idle"}
-      animate={active && trigger > 0 ? { x: [0, -8, 8, -8, 8, 0] } : { x: 0 }}
-      transition={{ duration: 0.4 }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import EstimatedDatePicker from "@/features/cotizaciones/EstimatedDatePicker";
+import type { QuoteFormData } from "@/features/cotizaciones/types";
+import { useLanguage } from "@/lib/i18n";
+import { ErrorShake, MultiTagSelector, inputClass } from "@/features/cotizaciones/FormControls";
+import {
+  DONT_WANT_MAX_LENGTH,
+  companyTypeLabelsEn,
+  companyTypes,
+  contactMethodLabelsEn,
+  contactMethodOptions,
+  localize,
+  quoteFormCopy,
+  serviceTypeLabelsEn,
+  serviceTypes,
+} from "@/features/cotizaciones/quote-form.data";
 
 export default function QuoteForm() {
   const { lang } = useLanguage();
-  const t = copy[lang];
+  const t = quoteFormCopy[lang];
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -740,7 +521,8 @@ export default function QuoteForm() {
               return;
             }
             setStepError(false);
-            isLastStep ? handleSubmit() : setStep((s) => Math.min(t.steps.length - 1, s + 1));
+            if (isLastStep) handleSubmit();
+            else setStep((s) => Math.min(t.steps.length - 1, s + 1));
           }}
           className={`group flex items-center gap-2 rounded-lg bg-[#d4ff00] px-5 py-2.5 text-sm font-medium text-black transition-opacity disabled:opacity-40 ${
             !isStepValid && !sending ? "opacity-50" : ""

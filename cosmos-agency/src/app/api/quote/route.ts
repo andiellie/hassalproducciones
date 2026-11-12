@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import type { QuoteFormData } from "@/types";
+import type { QuoteFormData } from "@/features/cotizaciones/types";
 
 const LOGO_URL = "https://www.cosmosagencymx.com/LOGO/cosmos-agency-navbar-wordmark.svg";
 const ACCENT = "#d4ff00";

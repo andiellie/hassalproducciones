@@ -1,4 +1,4 @@
-import Galaxy from '@/components/ui/Galaxy';
+import Galaxy from '@/components/effects/Galaxy';
 
 export default function GalaxyFadeBackdrop() {
   return (

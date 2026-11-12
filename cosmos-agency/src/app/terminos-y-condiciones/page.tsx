@@ -1,4 +1,4 @@
-import TerminosContent from "@/components/legal/TerminosContent";
+import TerminosContent from "@/features/legal/TerminosContent";
 
 export const metadata = {
   title: "Términos y Condiciones | Cosmos Agency",

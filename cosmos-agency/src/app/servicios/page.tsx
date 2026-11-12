@@ -1,9 +1,9 @@
 "use client";
 
 import { Suspense } from "react";
-import { motion } from "framer-motion";
-import PhotoVideoTabs from "@/components/servicios/PhotoVideoTabs";
-import { useLanguage } from "@/lib/language";
+import PhotoVideoTabs from "@/features/servicios/PhotoVideoTabs";
+import { useLanguage } from "@/lib/i18n";
+import PageTitle from "@/components/ui/PageTitle";
 
 export default function ServiciosPage() {
   const { lang } = useLanguage();
@@ -11,15 +11,7 @@ export default function ServiciosPage() {
   return (
     <div className="relative">
       <div className="relative mx-auto max-w-3xl px-6 pt-16">
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-4xl font-bold text-white sm:text-5xl"
-        >
-          {lang === "es" ? "Servicios" : "Services"}
-        </motion.h1>
+        <PageTitle>{lang === "es" ? "Servicios" : "Services"}</PageTitle>
       </div>
       <div className="relative">
         <Suspense fallback={null}>

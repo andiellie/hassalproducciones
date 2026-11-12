@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MorphIcon } from "morphicons/react";
 import { Menu, X } from "lucide";
-import { useLanguage } from "@/lib/language";
+import { useLanguage } from "@/lib/i18n";
 
 const links = [
   { href: "/servicios", label: { es: "Servicios", en: "Services" } },

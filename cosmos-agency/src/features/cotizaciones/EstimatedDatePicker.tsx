@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
-import type { Lang } from "@/lib/language";
+import type { Lang } from "@/lib/i18n";
 
 const RANGE_DAYS = 5;
 

@@ -239,6 +239,8 @@ export default function Galaxy({
       gl.clearColor(0, 0, 0, 1);
     }
 
+    // `let` a propósito: resize() lo lee (con guard) antes de que se cree el Program.
+    // eslint-disable-next-line prefer-const
     let program: Program;
 
     let lastW = 0;
