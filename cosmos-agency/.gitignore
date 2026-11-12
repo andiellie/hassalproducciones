@@ -54,3 +54,6 @@ public/imagenes/**/*.tiff
 
 .vercel
 .env*
+
+# Respaldos locales de imágenes sin comprimir (pesan ~500 MB)
+_originals/
